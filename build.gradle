@@ -24,3 +24,7 @@ javafx {
 test {
     useJUnitPlatform()
 }
+
+application {
+    mainClass = 'org.example.Main'
+}
