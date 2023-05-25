@@ -1,7 +1,7 @@
 package org.example;
 
 public class MapCreation {
-    Coordinates size;
+    static Coordinates size;
     int numberSettlements;
     int numberFood;
     int numberBuildingMaterials;
@@ -11,7 +11,7 @@ public class MapCreation {
         this.size = size;
         this.numberSettlements = numberSettlements;
         this.numberFood = numberFood;
-        this. numberBuildingMaterials = numberBuildingMaterials;
+        this.numberBuildingMaterials = numberBuildingMaterials;
     }
 
     public void CreateMap(Coordinates size, int numberSettlements, int numberFood, int numberBuildingMaterials){
