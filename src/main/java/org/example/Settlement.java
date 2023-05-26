@@ -8,6 +8,8 @@ public class Settlement {
     float speed;
     Food neededFood;
     Food ownedFood;
+    int neededNourishment = 10;
+    int neededConstructionValues = 10;
     BuildingMaterials neededBuildingMaterials;
     BuildingMaterials ownedBuildingMaterials;
     static Coordinates position;

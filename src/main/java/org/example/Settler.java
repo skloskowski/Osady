@@ -66,7 +66,7 @@ public class Settler {
 
                     limit();
                 }//powrot do osady
-                Settlement.ownedFood(foodHashMap.get(position).nourishment);
+                Settlement.getOwnedFood(foodHashMap.get(position).nourishment);
             }
 
             var buildingMaterials = buildingMaterialsHashMap.entrySet().stream()
@@ -85,10 +85,10 @@ public class Settler {
 
                     limit();
                 }
-                Settlement.ownedBuildingMaterials(buildingMaterialsHashMap.get(position).constructionValue); //
+                Settlement.getOwnedBuildingMaterials(buildingMaterialsHashMap.get(position).constructionValue); //
 
             }
-        }//cant complete without throwing an exception
+        }
     }
 
     private void limit() {
