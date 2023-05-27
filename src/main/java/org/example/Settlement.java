@@ -2,27 +2,26 @@ package org.example;
 
 import java.util.ArrayList;
 
-public class Settlement {
-    String colour;
+public class Settlement { // Pamiętać dodać kolory
+
+    // String colour;
     int population;
     float speed;
-    Food neededFood;
-    Food ownedFood;
-    int neededNourishment = 10;
+    int neededFood;
+    int ownedFood;
+    int neededNourishment = 10; // to będzie funkcja prędkości i liczebności -> większa prędkość większe zapotrzebowanie (fcja kwadratowa(?))
     int neededConstructionValues = 10;
-    BuildingMaterials neededBuildingMaterials;
-    BuildingMaterials ownedBuildingMaterials;
+    int neededBuildingMaterials;
+    int ownedBuildingMaterials;
     static Coordinates position;
 
-    public Settlement(String colour, int population, float speed, Food neededFood, Food ownedFood, BuildingMaterials neededBuildingMaterials, BuildingMaterials ownedBuildingMaterials, Coordinates position){
-        this.colour = colour;
+    public Settlement(int population, float speed, int ownedFood, int ownedBuildingMaterials, Coordinates position){
+        // this.colour = colour;
         this.population = population;
         this.speed = speed;
-        this.neededFood = neededFood;
         this.ownedFood = ownedFood;
-        this.neededBuildingMaterials = neededBuildingMaterials;
         this.ownedBuildingMaterials = ownedBuildingMaterials;
-        Settlement.position = position;
+        this.position = position;
     }
 
 //    public int changePopulation(int population, Resources neededResources, Resources ownedResources){
@@ -35,10 +34,10 @@ public class Settlement {
 //        }
 //
 //    }
-    public Food getNeededFood() {
+    public int getNeededFood() {
         return neededFood;
     }
-    public BuildingMaterials getNeededBuildingMaterials() {
+    public int getNeededBuildingMaterials() {
         return neededBuildingMaterials;
     }
     public int getPopulation() {

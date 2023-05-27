@@ -5,15 +5,17 @@ import java.util.Random;
 
 import static java.lang.Math.*;
 
-public class Settler {
-    String colour;
+public class Settler { // Pamiętać dodaj kolory
+    int settlerID;
+    // String colour;
     int speed;
     Food equipmentFood;
     BuildingMaterials equipmentBuildingMaterials;
     Coordinates position;
 
-    public Settler(String colour, int speed, Food equipmentFood, BuildingMaterials equipmentBuildingMaterials, Coordinates position) {
-        this.colour = colour;
+    public Settler(int settlerID, int speed, Food equipmentFood, BuildingMaterials equipmentBuildingMaterials, Coordinates position) {
+        this.settlerID = settlerID;
+        // this.colour = colour;
         this.speed = speed;
         this.equipmentFood = equipmentFood;
         this.equipmentBuildingMaterials = equipmentBuildingMaterials;
