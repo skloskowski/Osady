@@ -20,16 +20,22 @@ public class Main {
         List<FoodLocation> foodLocationList = new ArrayList<>();
         List<BuildingMaterialsLocation> buildingMaterialsLocationList = new ArrayList<>();
 
-        Input input = new Input();
-        input.askInitialValues();
+        // Input input = new Input();
+        // input.askInitialValues();
 
-        MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
+        MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 5, 5, 5, 3);
+
+        // MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
         //movement
         int movesPerDay = 0;
         int days = 0;
 
-        while(days <= 10) {//waruenk2
-            while (movesPerDay <= 20) {//warunek
+        System.out.println(occupiedSpace.size());
+        System.out.println(settlementList.size());
+        System.out.println(settlerList.size());
+
+        while(days < 10) {//waruenk2
+            while (movesPerDay < 20) {//warunek
                 moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
                 movesPerDay++;
             }
@@ -37,7 +43,13 @@ public class Main {
                 addSettlers(settlerList,settlement);
             }
             days++;
+
+            System.out.println(settlerList.size());
+            System.out.println(settlementList.get(0).ownedNourishment);
         }
+
+        // zbieranie rzeczy i zmiana populacji nie dziala
+
     }
     static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
         for (Settler settler : settlerList) {

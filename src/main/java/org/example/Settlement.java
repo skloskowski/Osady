@@ -11,7 +11,7 @@ public class Settlement { // Pamiętać dodać kolory
     int population;
     int color;
     float speed;
-    private int ownedNourishment;
+    int ownedNourishment;
     int neededNourishment;
     int neededConstructionValues;
     int neededStoneAmount;
@@ -19,7 +19,7 @@ public class Settlement { // Pamiętać dodać kolory
     int neededClayAmount;
     int ownedBuildingMaterials;
     Coordinates position;
-    HashMap<String,Integer>buildingMaterialsNumber = new HashMap<>();
+    HashMap<String,Integer> buildingMaterialsNumber = new HashMap<>();
 
     public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
@@ -30,6 +30,9 @@ public class Settlement { // Pamiętać dodać kolory
         this.position = position;
         this.neededNourishment = getNeededNourishment();
         this.neededConstructionValues = getNeededConstructionValues();
+        buildingMaterialsNumber.put("Wood", 0);
+        buildingMaterialsNumber.put("Stone", 0);
+        buildingMaterialsNumber.put("Clay", 0);
     }
 
 //    public int changePopulation(int population, Resources neededResources, Resources ownedResources){
@@ -53,13 +56,13 @@ public class Settlement { // Pamiętać dodać kolory
             newPopulation--;
         }
 
-        if(buildingMaterialsNumber.get("Wood") >= neededStoneAmount && buildingMaterialsNumber.get("Stone") >= neededWoodAmount && buildingMaterialsNumber
+        if(buildingMaterialsNumber.get("Stone") >= neededStoneAmount && buildingMaterialsNumber.get("Wood") >= neededWoodAmount && buildingMaterialsNumber
                 .get("Clay") >= neededClayAmount){
 
-            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededStoneAmount);
+            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededStoneAmount);
             neededStoneAmount++;
 
-            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededWoodAmount);
+            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededWoodAmount);
             neededWoodAmount++;
 
             buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
@@ -68,7 +71,7 @@ public class Settlement { // Pamiętać dodać kolory
             newPopulation++;
 
         }
-        if(buildingMaterialsNumber.get("Wood") <= neededStoneAmount - 2 && buildingMaterialsNumber.get("Stone") <= neededWoodAmount - 2 && buildingMaterialsNumber
+        if(buildingMaterialsNumber.get("Stone") <= neededStoneAmount - 2 && buildingMaterialsNumber.get("Wood") <= neededWoodAmount - 2 && buildingMaterialsNumber
                 .get("Clay") <= neededClayAmount - 2){ //jaka ilosc
 
             newPopulation--;

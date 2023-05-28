@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MapCreation {
-    static Coordinates size = new Coordinates(0,0);
+    static Coordinates size = new Coordinates(15,15);
 
     static public void CreateMap(List<BuildingMaterialsLocation> buildList, List<FoodLocation> foodList, List<Settlement> settlementList, List<Settler> settlerList, List<Coordinates> occupiedSpace , int numberSettlements, int numberFood, int numberBuildingMaterials, int startingSettlers){
 
@@ -109,7 +109,7 @@ public class MapCreation {
 
     static public void CreateStartSettlers(int startingSettlers, List<Settler> settlerList, List<Settlement> settlementList){
 
-        for (int j = 0; j < settlerList.size(); j++){
+        for (int j = 0; j < settlementList.size(); j++){
             for (int i = 0; i < startingSettlers; i++){
 
                 Settler settler = new Settler(settlementList.get(j).position, settlementList.get(j));
