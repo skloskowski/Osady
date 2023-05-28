@@ -5,9 +5,12 @@ import org.w3c.dom.ls.LSOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 import static javafx.application.Application.launch;
 
-public class Main {
+public class Main extends Application {
     public static void main(String[] args) {
         // launch(args);
 
@@ -18,6 +21,11 @@ public class Main {
 
         Input input = new Input();
         input.askSize();
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
 
     }
 }

@@ -2,8 +2,8 @@ package org.example;
 
 public class Food extends Resources{
     int nourishment;
-    public Food(String name, int weight, int nourishment) {
-        super(name, weight);
+    public Food(String name, int nourishment) {
+        super(name);
         this.nourishment = nourishment;
     }
 }

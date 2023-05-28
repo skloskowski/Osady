@@ -1,25 +1,25 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import static java.lang.Math.*;
 
-public class Settler { // Pamiętać dodaj kolory
+public class Settler{ // Pamiętać dodaj kolory
     int settlerID;
     // String colour;
-    int speed;
-    Food equipmentFood;
-    BuildingMaterials equipmentBuildingMaterials;
+    Settlement settlement;
+    float maxSpeed;
     Coordinates position;
 
-    public Settler(int settlerID, int speed, Food equipmentFood, BuildingMaterials equipmentBuildingMaterials, Coordinates position) {
+    public Settler(int settlerID, Coordinates position, Settlement settlement) {
         this.settlerID = settlerID;
         // this.colour = colour;
-        this.speed = speed;
-        this.equipmentFood = equipmentFood;
-        this.equipmentBuildingMaterials = equipmentBuildingMaterials;
         this.position = position;
+        this.settlement = settlement;
+        this.maxSpeed = settlement.getSpeed();
     }
 
     public Food acquireFood(Food equipment) {
@@ -34,64 +34,112 @@ public class Settler { // Pamiętać dodaj kolory
         return position;
     }
 
-    public void movement(HashMap<Coordinates, Food> foodHashMap, HashMap<Coordinates, BuildingMaterials> buildingMaterialsHashMap) {
-        Random rand = new Random();
-        Vector location = new Vector(position.x, position.y);
-        Vector velocity = new Vector(0, 0);
-        while (true) {
+//    public void movement(HashMap<FoodLocation, Food> foodHashMap, HashMap<BuildingMaterialsLocation, BuildingMaterials> buildingMaterialsHashMap) {
+//        Random rand = new Random();
+//        Vector location = new Vector(position.x, position.y);
+//        Vector velocity = new Vector(0, 0);
+//        while (true) {
+////            int random_x = rand.nextInt(-2,2);
+////            int random_y = rand.nextInt(-2,2);
+////
+////            position.x = position.x + speed * random_x;
+////            position.y = position.y + speed * random_y;
+//
+//            Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
+//            location.add(velocity);
+//            velocity.add(acceleration);
+//
+//            if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0);
+//
+//            limit();
+//            var food = foodHashMap.entrySet().stream()
+//                    .filter(keySet -> {
+//                        var key = keySet.getKey();
+//                        if (pow((keySet.getKey().position.x-position.x),2)<25 && pow(keySet.getKey().position.y - position.y, 2) < 25) return true;
+//                        return false;//czy moge tu metode
+//                    }).findAny().orElse(null);
+//
+//            if (food != null) {
+//                equipmentFood = food.getValue();
+//                while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+//                    Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+//
+//                    location.add(returnVelocity.normalize());
+//
+//                    limit();
+//                }//powrot do osady
+//                Settlement.getOwnedFood(foodHashMap.get(position).nourishment);
+//            }
+//
+//            var buildingMaterials = buildingMaterialsHashMap.entrySet().stream()
+//                    .filter(keySet -> {
+//                        var key = keySet.getKey();
+//                        if (pow((keySet.getKey().position.x-position.x),2)<25 && pow(keySet.getKey().position.y - position.y, 2) < 25) return true;
+//                        return false;
+//                    }).findAny().orElse(null);
+//
+//            if (buildingMaterials != null){
+//                equipmentBuildingMaterials = buildingMaterials.getValue();
+//                while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+//                    Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+//
+//                    location.add(returnVelocity.normalize());
+//
+//                    limit();
+//                }
+//                Settlement.getOwnedBuildingMaterials(buildingMaterialsHashMap.get(position).constructionValue); //
+//
+//            }
+//        }
+//    }
+public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<BuildingMaterialsLocation> buildingMaterialsLocationList) {
+    Random rand = new Random();
+    Vector location = new Vector(position.x, position.y);
+    Vector velocity = new Vector(0, 0);
+    while (true) {
 //            int random_x = rand.nextInt(-2,2);
 //            int random_y = rand.nextInt(-2,2);
 //
 //            position.x = position.x + speed * random_x;
 //            position.y = position.y + speed * random_y;
 
-            Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
-            location.add(velocity);
-            velocity.add(acceleration);
+        Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
+        location.add(velocity);
+        velocity.add(acceleration);
 
-            if (velocity.getVectorLength() >= 1.5) acceleration = acceleration.multiply(0);
+        if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0);
 
-            limit();
-            var food = foodHashMap.entrySet().stream()
-                    .filter(keySet -> {
-                        var key = keySet.getKey();
-                        if (pow((keySet.getKey().x-position.x),2)<25 && pow(keySet.getKey().y - position.y, 2) < 25) return true;
-                        return false;
-                    }).findAny().orElse(null);
+        limit();
+        var foodLocation = foodLocationList.stream()
+                    .filter(fd -> fd.position.equals(position)).findAny().orElse(null);
 
-            if (food != null) {
-                equipmentFood = food.getValue();
-                while (pow((position.x - Settlement.position.x), 2) > 25 && pow((position.y - Settlement.position.y), 2) > 25) {
-                    Vector returnVelocity = new Vector(Settlement.position.x - position.x, Settlement.position.y - position.y);
+        if (foodLocation != null) {
+            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
-                    location.add(returnVelocity.normalize());
+                location.add(returnVelocity.normalize());
 
-                    limit();
-                }//powrot do osady
-                Settlement.getOwnedFood(foodHashMap.get(position).nourishment);
+                limit();
+            }//powrot do osady
+            Settlement.getOwnedFood(foodLocation.nourishment);
+        }
+
+        var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
+                .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);
+
+        if (buildingMaterialsLocation != null){
+            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+
+                location.add(returnVelocity.normalize());
+
+                limit();
             }
+            Settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.constructionValue); //
 
-            var buildingMaterials = buildingMaterialsHashMap.entrySet().stream()
-                    .filter(keySet -> {
-                        var key = keySet.getKey();
-                        if (pow((keySet.getKey().x-position.x),2)<25 && pow(keySet.getKey().y - position.y, 2) < 25) return true;
-                        return false;
-                    }).findAny().orElse(null);
-
-            if (buildingMaterials != null){
-                equipmentBuildingMaterials = buildingMaterials.getValue();
-                while (pow((position.x - Settlement.position.x), 2) > 25 && pow((position.y - Settlement.position.y), 2) > 25) {
-                    Vector returnVelocity = new Vector(Settlement.position.x - position.x, Settlement.position.y - position.y);
-
-                    location.add(returnVelocity.normalize());
-
-                    limit();
-                }
-                Settlement.getOwnedBuildingMaterials(buildingMaterialsHashMap.get(position).constructionValue); //
-
-            }
         }
     }
+}
 
     private void limit() {
         if (position.x > MapCreation.size.x) position.x = 0;

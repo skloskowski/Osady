@@ -2,9 +2,7 @@ package org.example;
 
 public abstract class Resources {
     String name;
-    int weight;
-    public Resources(String name, int weight){
+    public Resources(String name){
         this.name = name;
-        this.weight = weight;
     }
 }

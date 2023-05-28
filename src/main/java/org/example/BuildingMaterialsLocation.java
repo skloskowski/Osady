@@ -3,8 +3,8 @@ package org.example;
 public class BuildingMaterialsLocation extends BuildingMaterials{
     Coordinates position;
 
-    public BuildingMaterialsLocation(String name, int weight, int nourishment, int constructionValue, Coordinates position){
-        super(name, weight, nourishment,constructionValue);
+    public BuildingMaterialsLocation(String name, int nourishment, int constructionValue, Coordinates position){
+        super(name, nourishment,constructionValue);
         this.position = position;
     }
 }

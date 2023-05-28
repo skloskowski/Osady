@@ -7,13 +7,12 @@ public class Settlement { // Pamiętać dodać kolory
     // String colour;
     int population;
     float speed;
-    int neededFood;
     int ownedFood;
     int neededNourishment = 10; // to będzie funkcja prędkości i liczebności -> większa prędkość większe zapotrzebowanie (fcja kwadratowa(?))
     int neededConstructionValues = 10;
     int neededBuildingMaterials;
     int ownedBuildingMaterials;
-    static Coordinates position;
+    Coordinates position;
 
     public Settlement(int population, float speed, int ownedFood, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
@@ -34,9 +33,7 @@ public class Settlement { // Pamiętać dodać kolory
 //        }
 //
 //    }
-    public int getNeededFood() {
-        return neededFood;
-    }
+
     public int getNeededBuildingMaterials() {
         return neededBuildingMaterials;
     }
@@ -54,4 +51,12 @@ public class Settlement { // Pamiętać dodać kolory
         ownedBuildingMaterials.add(constructionValue);
         return ownedBuildingMaterials;
     }
+
+    public float getSpeed() {
+        return speed;
+    }
 }
+//hashmapy
+//gettery
+//kolory
+//settler

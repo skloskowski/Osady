@@ -2,6 +2,9 @@ package org.example;
 
 import java.util.Scanner;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Input {
     Coordinates size;
     int numberSettlements;
@@ -42,4 +45,6 @@ public class Input {
     public Coordinates getSize(){
         return size;
     }
+    //color randomization
+
 }
