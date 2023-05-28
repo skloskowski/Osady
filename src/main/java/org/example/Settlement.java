@@ -10,7 +10,6 @@ public class Settlement { // Pamiętać dodać kolory
     int ownedFood;
     int neededNourishment = 10; // to będzie funkcja prędkości i liczebności -> większa prędkość większe zapotrzebowanie (fcja kwadratowa(?))
     int neededConstructionValues = 10;
-    int neededBuildingMaterials;
     int ownedBuildingMaterials;
     Coordinates position;
 
@@ -34,8 +33,12 @@ public class Settlement { // Pamiętać dodać kolory
 //
 //    }
 
-    public int getNeededBuildingMaterials() {
-        return neededBuildingMaterials;
+    public int getNeededConstructionValues() {
+        return neededConstructionValues;
+    }
+
+    public int getNeededNourishment(){
+        return neededNourishment;
     }
     public int getPopulation() {
         return population;
