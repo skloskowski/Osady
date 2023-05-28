@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static java.lang.Math.pow;
 
@@ -42,13 +43,14 @@ public class Settlement { // Pamiętać dodać kolory
 //
 //    }
     public int changePopulation(int population){
+        int newPopulation = 0;
         if(ownedNourishment >= getNeededNourishment()){
             ownedNourishment -= getNeededNourishment();
-            population++;
+            newPopulation++;
         }
 
         if(ownedNourishment <= getNeededNourishment() - 2){//jaka ilosc
-            population--;
+            newPopulation--;
         }
 
         if(buildingMaterialsNumber.get("Wood") >= neededStoneAmount && buildingMaterialsNumber.get("Stone") >= neededWoodAmount && buildingMaterialsNumber
@@ -63,16 +65,16 @@ public class Settlement { // Pamiętać dodać kolory
             buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
             neededClayAmount++;
 
-            population++;
+            newPopulation++;
 
         }
         if(buildingMaterialsNumber.get("Wood") <= neededStoneAmount - 2 && buildingMaterialsNumber.get("Stone") <= neededWoodAmount - 2 && buildingMaterialsNumber
                 .get("Clay") <= neededClayAmount - 2){ //jaka ilosc
 
-            population--;
+            newPopulation--;
 
         }
-        return population;
+        return newPopulation;
     }
     public int getNeededConstructionValues() {
         return (int)(pow(speed,2) + population);

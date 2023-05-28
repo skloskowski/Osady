@@ -32,7 +32,10 @@ public class Main {
                 movesPerDay++;
             }
             for (Settlement settlement : settlementList) {
-                settlement.changePopulation(settlement.population);
+                for(int i = 0; i < settlement.changePopulation(settlement.population); i++){
+                    Settler settler = new Settler(settlement.position, settlement);
+                    settlerList.add(settler);
+                }
             }
             days++;
         }
