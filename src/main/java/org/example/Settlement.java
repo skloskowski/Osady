@@ -20,8 +20,9 @@ public class Settlement { // Pamiętać dodać kolory
     Coordinates position;
     HashMap<String,Integer>buildingMaterialsNumber = new HashMap<>();
 
-    public Settlement(int population, float speed, int ownedBuildingMaterials, Coordinates position){
+    public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
+        this.ownedNourishment = ownedNourishment;
         this.population = population;
         this.speed = speed;
         this.ownedBuildingMaterials = ownedBuildingMaterials;

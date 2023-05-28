@@ -8,12 +8,12 @@ public class MapCreation {
 
     static public void CreateMap(List<BuildingMaterialsLocation> buildList, List<FoodLocation> foodList, List<Settlement> settlementList, List<Settler> settlerList, List<Coordinates> occupiedSpace , int numberSettlements, int numberFood, int numberBuildingMaterials, int startingSettlers){
 
-        CreateSettlements(numberSettlements, settlementList, occupiedSpace);
+        CreateSettlements(numberSettlements, settlementList, occupiedSpace, startingSettlers);
         CreateFoodLocations(numberFood, foodList, occupiedSpace);
         CreateBuildingMaterialsLocations(numberBuildingMaterials, buildList, occupiedSpace);
         CreateStartSettlers(startingSettlers, settlerList, settlementList);
     }
-    static public void CreateSettlements(int numberSettlements, List<Settlement> list, List<Coordinates> occupiedSpace){
+    static public void CreateSettlements(int numberSettlements, List<Settlement> list, List<Coordinates> occupiedSpace, int numberStartingSettlers){
 
         Random rand = new Random();
         Coordinates randCords = Coordinates.RandomCoordinates();
@@ -23,8 +23,9 @@ public class MapCreation {
             while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.RandomCoordinates();
 
             Settlement settlement = new Settlement(
-                    3,
+                    numberStartingSettlers,
                     rand.nextFloat(9.0f) + 1.0f,
+                    0,
                     0,
                     randCords
             );
