@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static java.lang.Math.*;
@@ -93,7 +94,7 @@ public class Settler{ // Pamiętać dodaj kolory
 //            }
 //        }
 //    }
-    public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<BuildingMaterialsLocation> buildingMaterialsLocationList) {
+    public void movement(List<FoodLocation> foodLocationList, List<BuildingMaterialsLocation> buildingMaterialsLocationList) {
         if (!isMoving) {
             if (System.currentTimeMillis() - lastStopTimestamp >= stoppedFor) isMoving = false;
             else return;
@@ -110,7 +111,7 @@ public class Settler{ // Pamiętać dodaj kolory
 
         limit();
         var foodLocation = foodLocationList.stream()
-                .filter(fd -> fd.position.equals(position)).findAny().orElse(null);
+                .filter(food -> food.position.equals(position)).findAny().orElse(null);
 
         if (foodLocation != null) {
             while (pow((position.x - foodLocation.position.x), 2) > 4 && pow((position.y - foodLocation.position.y), 2) > 4) {

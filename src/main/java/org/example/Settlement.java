@@ -13,9 +13,9 @@ public class Settlement { // Pamiętać dodać kolory
     private int ownedNourishment;
     int neededNourishment;
     int neededConstructionValues;
-    int neededMaterialAmount1;
-    int neededMaterialAmount2;
-    int neededMaterialAmount3;
+    int neededStoneAmount;
+    int neededWoodAmount;
+    int neededClayAmount;
     int ownedBuildingMaterials;
     Coordinates position;
     HashMap<String,Integer>buildingMaterialsNumber = new HashMap<>();
@@ -23,7 +23,7 @@ public class Settlement { // Pamiętać dodać kolory
     public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
         this.ownedNourishment = ownedNourishment;
-        this.population = population;
+        this.population = population; //zeby nie bylo <0
         this.speed = speed;
         this.ownedBuildingMaterials = ownedBuildingMaterials;
         this.position = position;
@@ -46,19 +46,30 @@ public class Settlement { // Pamiętać dodać kolory
             ownedNourishment -= getNeededNourishment();
             population++;
         }
-        if(buildingMaterialsNumber.get("Wood") >= neededMaterialAmount1 && buildingMaterialsNumber.get("Stone") >= neededMaterialAmount2 && buildingMaterialsNumber
-                .get("Clay") >= neededMaterialAmount3){
 
-            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")-neededMaterialAmount1);
-            neededMaterialAmount1++;
+        if(ownedNourishment <= getNeededNourishment() - 2){//jaka ilosc
+            population--;
+        }
 
-            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")-neededMaterialAmount2);
-            neededMaterialAmount2++;
+        if(buildingMaterialsNumber.get("Wood") >= neededStoneAmount && buildingMaterialsNumber.get("Stone") >= neededWoodAmount && buildingMaterialsNumber
+                .get("Clay") >= neededClayAmount){
 
-            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")-neededMaterialAmount3);
-            neededMaterialAmount3++;
+            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededStoneAmount);
+            neededStoneAmount++;
+
+            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededWoodAmount);
+            neededWoodAmount++;
+
+            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
+            neededClayAmount++;
 
             population++;
+
+        }
+        if(buildingMaterialsNumber.get("Wood") <= neededStoneAmount - 2 && buildingMaterialsNumber.get("Stone") <= neededWoodAmount - 2 && buildingMaterialsNumber
+                .get("Clay") <= neededClayAmount - 2){ //jaka ilosc
+
+            population--;
 
         }
         return population;

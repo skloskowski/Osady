@@ -24,10 +24,24 @@ public class Main {
         input.askInitialValues();
 
         MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
-
-
+        int movesPerDay = 0;
+        int days = 0;
+        while(days <= 10) {//waruenk2
+            while (movesPerDay <= 20) {//warunek
+                moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
+                movesPerDay++;
+            }
+            for (Settlement settlement : settlementList) {
+                settlement.changePopulation(settlement.population);
+            }
+            days++;
+        }
     }
-
+    static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
+        for (Settler settler : settlerList) {
+            settler.movement(foodLocationList, buildingMaterialsLocationList);
+        }
+    }
     /*
     @Override
     public void start(Stage primaryStage) {
