@@ -28,7 +28,6 @@ public class MapCreation {
                     3,
                     rand.nextFloat(9.0f) + 1.0f,
                     0,
-                    0,
                     randCords
             );
 

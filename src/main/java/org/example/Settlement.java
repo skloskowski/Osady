@@ -1,26 +1,35 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static java.lang.Math.pow;
 
 public class Settlement { // Pamiętać dodać kolory
 
     // String colour;
     int population;
     float speed;
-    int ownedFood;
-    int neededNourishment = 10; // to będzie funkcja prędkości i liczebności -> większa prędkość większe zapotrzebowanie (fcja kwadratowa(?))
-    int neededConstructionValues = 10;
+    int ownedNourishment;
+    int neededNourishment;
+    int neededConstructionValues;
+    int ownedConstructionValues;
     int neededBuildingMaterials;
+    int neededMaterialAmount1;
+    int neededMaterialAmount2;
+    int neededMaterialAmount3;
     int ownedBuildingMaterials;
     Coordinates position;
+    HashMap<String,Integer>buildingMaterialsNumber = new HashMap<>();
 
-    public Settlement(int population, float speed, int ownedFood, int ownedBuildingMaterials, Coordinates position){
+    public Settlement(int population, float speed, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
         this.population = population;
         this.speed = speed;
-        this.ownedFood = ownedFood;
         this.ownedBuildingMaterials = ownedBuildingMaterials;
         this.position = position;
+        this.neededNourishment = getNeededNourishment();
+        this.neededConstructionValues = getNeededConstructionValues();
     }
 
 //    public int changePopulation(int population, Resources neededResources, Resources ownedResources){
@@ -33,30 +42,56 @@ public class Settlement { // Pamiętać dodać kolory
 //        }
 //
 //    }
+    public int changePopulation(int population){
+        if(ownedNourishment >= getNeededNourishment()){
+            ownedNourishment -= getNeededNourishment();
+            population++;
+        }
+        if(buildingMaterialsNumber.get("Material1") >= neededMaterialAmount1 && buildingMaterialsNumber.get("Material2") >= neededMaterialAmount2 && buildingMaterialsNumber
+                .get("Material3") >= neededMaterialAmount3){
 
-    public int getNeededBuildingMaterials() {
-        return neededBuildingMaterials;
+            buildingMaterialsNumber.replace("Material1",buildingMaterialsNumber.get("Material1")-neededMaterialAmount1);
+            neededMaterialAmount1++;
+
+            buildingMaterialsNumber.replace("Material2",buildingMaterialsNumber.get("Material2")-neededMaterialAmount2);
+            neededMaterialAmount2++;
+
+            buildingMaterialsNumber.replace("Material3",buildingMaterialsNumber.get("Material3")-neededMaterialAmount3);
+            neededMaterialAmount3++;
+
+            population++;
+
+        }
+        return population;
+    }
+    public int getNeededConstructionValues() {
+        return (int)(pow(speed,2) + population);
+    }
+    public int getNeededNourishment(){
+        return (int)(pow(speed,2) + population);
     }
     public int getPopulation() {
         return population;
     }
     //change population
-    public static ArrayList <Integer> getOwnedFood(int nourishment){
-        ArrayList<Integer> ownedFood = new ArrayList<>();
-        ownedFood.add(nourishment);
-        return ownedFood;
+    public void getOwnedNourishment(int nourishment){
+        ownedNourishment += nourishment;
     }
-    public static ArrayList <Integer> getOwnedBuildingMaterials(int constructionValue){
-        ArrayList<Integer> ownedBuildingMaterials = new ArrayList<>();
-        ownedBuildingMaterials.add(constructionValue);
-        return ownedBuildingMaterials;
+    public void getOwnedBuildingMaterials(String name){
+        buildingMaterialsNumber.put("Material1", 0);
+        buildingMaterialsNumber.put("Material2", 0);
+        buildingMaterialsNumber.put("Material3", 0);
+
+        if(buildingMaterialsNumber.containsKey(name)){
+            int value = buildingMaterialsNumber.get(name);
+            buildingMaterialsNumber.replace(name, value, value + 1);
+        }
     }
 
     public float getSpeed() {
         return speed;
     }
 }
-//hashmapy
-//gettery
-//kolory
-//settler
+//colours
+//change movement
+//sleep

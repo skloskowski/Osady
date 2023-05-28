@@ -121,7 +121,7 @@ public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<Buildin
 
                 limit();
             }//powrot do osady
-            Settlement.getOwnedFood(foodLocation.nourishment);
+            settlement.getOwnedNourishment(foodLocation.nourishment);
         }
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
@@ -135,8 +135,7 @@ public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<Buildin
 
                 limit();
             }
-            Settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.constructionValue); //
-
+            settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
         }
     }
 }
