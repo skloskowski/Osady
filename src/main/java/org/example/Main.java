@@ -24,18 +24,17 @@ public class Main {
         input.askInitialValues();
 
         MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
+        //movement
         int movesPerDay = 0;
         int days = 0;
+
         while(days <= 10) {//waruenk2
             while (movesPerDay <= 20) {//warunek
                 moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
                 movesPerDay++;
             }
             for (Settlement settlement : settlementList) {
-                for(int i = 0; i < settlement.changePopulation(settlement.population); i++){
-                    Settler settler = new Settler(settlement.position, settlement);
-                    settlerList.add(settler);
-                }
+                addSettlers(settlerList,settlement);
             }
             days++;
         }
@@ -43,6 +42,12 @@ public class Main {
     static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
         for (Settler settler : settlerList) {
             settler.movement(foodLocationList, buildingMaterialsLocationList);
+        }
+    }
+    static public void addSettlers(List<Settler> settlerList, Settlement settlement){
+        for(int i = 0; i < settlement.changePopulation(settlement.population); i++){
+            Settler settler = new Settler(settlement.position, settlement);
+            settlerList.add(settler);
         }
     }
     /*
