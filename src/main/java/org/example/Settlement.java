@@ -9,12 +9,10 @@ public class Settlement { // Pamiętać dodać kolory
 
     // String colour;
     int population;
-    float speed;
-    int ownedNourishment;
+    private float speed;
+    private int ownedNourishment;
     int neededNourishment;
     int neededConstructionValues;
-    int ownedConstructionValues;
-    int neededBuildingMaterials;
     int neededMaterialAmount1;
     int neededMaterialAmount2;
     int neededMaterialAmount3;
