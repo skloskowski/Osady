@@ -16,11 +16,16 @@ public class Main {
 
         List<Coordinates> occupiedSpace = new ArrayList<>();
         List<Settlement> settlementList = new ArrayList<>();
+        List<Settler> settlerList = new ArrayList<>();
         List<FoodLocation> foodLocationList = new ArrayList<>();
         List<BuildingMaterialsLocation> buildingMaterialsLocationList = new ArrayList<>();
 
         Input input = new Input();
-        input.askSize();
+        input.askInitialValues();
+
+        MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
+
+
     }
 
     /*

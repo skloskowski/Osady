@@ -20,8 +20,9 @@ public class Settlement { // Pamiętać dodać kolory
     Coordinates position;
     HashMap<String,Integer>buildingMaterialsNumber = new HashMap<>();
 
-    public Settlement(int population, float speed, int ownedBuildingMaterials, Coordinates position){
+    public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
         // this.colour = colour;
+        this.ownedNourishment = ownedNourishment;
         this.population = population;
         this.speed = speed;
         this.ownedBuildingMaterials = ownedBuildingMaterials;
@@ -45,16 +46,16 @@ public class Settlement { // Pamiętać dodać kolory
             ownedNourishment -= getNeededNourishment();
             population++;
         }
-        if(buildingMaterialsNumber.get("Material1") >= neededMaterialAmount1 && buildingMaterialsNumber.get("Material2") >= neededMaterialAmount2 && buildingMaterialsNumber
-                .get("Material3") >= neededMaterialAmount3){
+        if(buildingMaterialsNumber.get("Wood") >= neededMaterialAmount1 && buildingMaterialsNumber.get("Stone") >= neededMaterialAmount2 && buildingMaterialsNumber
+                .get("Clay") >= neededMaterialAmount3){
 
-            buildingMaterialsNumber.replace("Material1",buildingMaterialsNumber.get("Material1")-neededMaterialAmount1);
+            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")-neededMaterialAmount1);
             neededMaterialAmount1++;
 
-            buildingMaterialsNumber.replace("Material2",buildingMaterialsNumber.get("Material2")-neededMaterialAmount2);
+            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")-neededMaterialAmount2);
             neededMaterialAmount2++;
 
-            buildingMaterialsNumber.replace("Material3",buildingMaterialsNumber.get("Material3")-neededMaterialAmount3);
+            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")-neededMaterialAmount3);
             neededMaterialAmount3++;
 
             population++;
@@ -76,9 +77,9 @@ public class Settlement { // Pamiętać dodać kolory
         ownedNourishment += nourishment;
     }
     public void getOwnedBuildingMaterials(String name){
-        buildingMaterialsNumber.put("Material1", 0);
-        buildingMaterialsNumber.put("Material2", 0);
-        buildingMaterialsNumber.put("Material3", 0);
+        buildingMaterialsNumber.put("Wood", 0);
+        buildingMaterialsNumber.put("Stone", 0);
+        buildingMaterialsNumber.put("Clay", 0);
 
         if(buildingMaterialsNumber.containsKey(name)){
             int value = buildingMaterialsNumber.get(name);

@@ -5,8 +5,7 @@ import java.util.Random;
 
 import static java.lang.Math.*;
 
-public class Settler { // Pamiętać dodaj kolory
-    int settlerID;
+public class Settler{ // Pamiętać dodaj kolory
     // String colour;
     Settlement settlement;
     float maxSpeed;
@@ -16,8 +15,7 @@ public class Settler { // Pamiętać dodaj kolory
     long lastStopTimestamp;
     long stoppedFor;
 
-    public Settler(int settlerID, Coordinates position, Settlement settlement) {
-        this.settlerID = settlerID;
+    public Settler(Coordinates position, Settlement settlement) {
         // this.colour = colour;
         this.position = position;
         this.settlement = settlement;
