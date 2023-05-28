@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static java.lang.Math.pow;
@@ -9,7 +8,8 @@ public class Settlement { // Pamiętać dodać kolory
 
     // String colour;
     int population;
-    private float speed;
+    int color;
+    float speed;
     private int ownedNourishment;
     int neededNourishment;
     int neededConstructionValues;
@@ -91,5 +91,4 @@ public class Settlement { // Pamiętać dodać kolory
     }
 }
 //colours
-//change movement
 //sleep

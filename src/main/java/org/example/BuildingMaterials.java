@@ -1,9 +1,9 @@
 package org.example;
 
 public class BuildingMaterials extends Resources{
-    int extractionTime;
+    long extractionTime;
     int constructionValue;
-    public BuildingMaterials(String name, int extractionTime, int constructionValue) {
+    public BuildingMaterials(String name, long extractionTime, int constructionValue) {
         super(name);
         this.extractionTime = extractionTime;
         this.constructionValue = constructionValue;

@@ -1,18 +1,20 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
-import java.util.Set;
 
 import static java.lang.Math.*;
 
-public class Settler{ // Pamiętać dodaj kolory
+public class Settler { // Pamiętać dodaj kolory
     int settlerID;
     // String colour;
     Settlement settlement;
     float maxSpeed;
     Coordinates position;
+    int color;
+    boolean isMoving = true;
+    long lastStopTimestamp;
+    long stoppedFor;
 
     public Settler(int settlerID, Coordinates position, Settlement settlement) {
         this.settlerID = settlerID;
@@ -20,6 +22,7 @@ public class Settler{ // Pamiętać dodaj kolory
         this.position = position;
         this.settlement = settlement;
         this.maxSpeed = settlement.getSpeed();
+        this.color = settlement.color;
     }
 
     public Food acquireFood(Food equipment) {
@@ -34,7 +37,7 @@ public class Settler{ // Pamiętać dodaj kolory
         return position;
     }
 
-//    public void movement(HashMap<FoodLocation, Food> foodHashMap, HashMap<BuildingMaterialsLocation, BuildingMaterials> buildingMaterialsHashMap) {
+    //    public void movement(HashMap<FoodLocation, Food> foodHashMap, HashMap<BuildingMaterialsLocation, BuildingMaterials> buildingMaterialsHashMap) {
 //        Random rand = new Random();
 //        Vector location = new Vector(position.x, position.y);
 //        Vector velocity = new Vector(0, 0);
@@ -92,16 +95,14 @@ public class Settler{ // Pamiętać dodaj kolory
 //            }
 //        }
 //    }
-public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<BuildingMaterialsLocation> buildingMaterialsLocationList) {
-    Random rand = new Random();
-    Vector location = new Vector(position.x, position.y);
-    Vector velocity = new Vector(0, 0);
-    while (true) {
-//            int random_x = rand.nextInt(-2,2);
-//            int random_y = rand.nextInt(-2,2);
-//
-//            position.x = position.x + speed * random_x;
-//            position.y = position.y + speed * random_y;
+    public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<BuildingMaterialsLocation> buildingMaterialsLocationList) {
+        if (!isMoving) {
+            if (System.currentTimeMillis() - lastStopTimestamp >= stoppedFor) isMoving = false;
+            else return;
+        }
+        Random rand = new Random();
+        Vector location = new Vector(position.x, position.y);
+        Vector velocity = new Vector(0, 0);
 
         Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
         location.add(velocity);
@@ -111,9 +112,17 @@ public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<Buildin
 
         limit();
         var foodLocation = foodLocationList.stream()
-                    .filter(fd -> fd.position.equals(position)).findAny().orElse(null);
+                .filter(fd -> fd.position.equals(position)).findAny().orElse(null);
 
         if (foodLocation != null) {
+            while (pow((position.x - foodLocation.position.x), 2) > 4 && pow((position.y - foodLocation.position.y), 2) > 4) {
+                Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
+
+                location.add(getFood.normalize());
+
+                limit();
+            }//idk
+
             while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
                 Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
@@ -126,19 +135,29 @@ public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<Buildin
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
                 .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);
+        if (buildingMaterialsLocation != null) {
+            while (pow((position.x - buildingMaterialsLocation.position.x), 2) > 4 && pow((position.y - buildingMaterialsLocation.position.y), 2) > 4) {
+                Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
 
-        if (buildingMaterialsLocation != null){
-            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
-                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
-
-                location.add(returnVelocity.normalize());
+                location.add(getFood.normalize());
 
                 limit();
             }
-            settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+            isMoving = true;
+            stoppedFor = buildingMaterialsLocation.extractionTime;
+            lastStopTimestamp = System.currentTimeMillis();
+            if (buildingMaterialsLocation != null) {
+                while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+                    Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+
+                    location.add(returnVelocity.normalize());
+
+                    limit();
+                }
+                settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+            }
         }
     }
-}
 
     private void limit() {
         if (position.x > MapCreation.size.x) position.x = 0;
@@ -146,5 +165,6 @@ public void movement(ArrayList<FoodLocation> foodLocationList, ArrayList<Buildin
         if (position.y > MapCreation.size.y) position.y = 0;
         if (position.y < 0) position.y = MapCreation.size.y;
     }
+
 
 }

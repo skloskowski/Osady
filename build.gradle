@@ -6,6 +6,8 @@ plugins {
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
+sourceCompatibility = 19
+targetCompatibility = 19
 
 repositories {
     mavenCentral()
