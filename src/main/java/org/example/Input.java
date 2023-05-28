@@ -10,6 +10,7 @@ public class Input {
     int numberSettlements;
     int numberFood;
     int numberBuildingMaterials;
+    int numberStartingSettlers;
 
     /*
     public Input(Coordinates size, int numberSettlements, int numberFood, int numberBuildingMaterials){
@@ -32,15 +33,29 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         numberSettlements = scanner.nextInt();
     }
+
+    public void askStartingSettlers(){
+        System.out.println("Enter number of starting settlers of each settlement:");
+        Scanner scanner = new Scanner(System.in);
+        numberStartingSettlers = scanner.nextInt();
+    }
     public void askFood(){
         System.out.println("Enter number of food locations:");
         Scanner scanner = new Scanner(System.in);
         numberFood = scanner.nextInt();
     }
-    public void numberBuildingMaterials(){
-        System.out.println("Enter number of food locations:");
+    public void askNumberBuildingMaterials(){
+        System.out.println("Enter number of building materials locations:");
         Scanner scanner = new Scanner(System.in);
         numberBuildingMaterials = scanner.nextInt();
+    }
+
+    public void askInitialValues(){
+        askSize();
+        askSettlements();
+        askFood();
+        askNumberBuildingMaterials();
+        askStartingSettlers();
     }
     public Coordinates getSize(){
         return size;

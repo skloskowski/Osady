@@ -8,14 +8,12 @@ import java.util.Set;
 import static java.lang.Math.*;
 
 public class Settler{ // Pamiętać dodaj kolory
-    int settlerID;
     // String colour;
     Settlement settlement;
     float maxSpeed;
     Coordinates position;
 
-    public Settler(int settlerID, Coordinates position, Settlement settlement) {
-        this.settlerID = settlerID;
+    public Settler(Coordinates position, Settlement settlement) {
         // this.colour = colour;
         this.position = position;
         this.settlement = settlement;
