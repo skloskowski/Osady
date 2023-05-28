@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
 
-public class Main extends Application {
+public class Main {
     public static void main(String[] args) {
         // launch(args);
 
@@ -21,11 +21,13 @@ public class Main extends Application {
 
         Input input = new Input();
         input.askSize();
-
     }
 
+    /*
     @Override
     public void start(Stage primaryStage) {
 
     }
+
+     */
 }
