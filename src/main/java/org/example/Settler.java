@@ -18,11 +18,14 @@ public class Settler{
     long stoppedFor;
 
     public Settler(Coordinates position, Settlement settlement) {
-        // this.colour = colour;
         this.position = position;
         this.settlement = settlement;
         this.maxSpeed = settlement.getSpeed();
         this.color = settlement.color;
+    }
+
+    public Coordinates getPosition() {
+        return position;
     }
 
     public void movement(List<FoodLocation> foodLocationList, List<BuildingMaterialsLocation> buildingMaterialsLocationList) {
@@ -48,7 +51,11 @@ public class Settler{
         if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0); //nie dziala zmienic u gory
 
         var foodLocation = foodLocationList.stream()
-                .filter(food -> food.position.equals(position)).findAny().orElse(null);
+                .filter(food -> {
+                    if(pow(position.x- food.position.x,2) <= 9 && pow(position.y-food.position.y,2) <= 9)
+                        return false;
+                    return true;
+                }).findAny().orElse(null);
 
         if (foodLocation != null) {
             while (pow((position.x - foodLocation.position.x), 2) > 4 && pow((position.y - foodLocation.position.y), 2) > 4) {
@@ -79,7 +86,11 @@ public class Settler{
         }
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
-                .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
+                .filter(x -> {
+                  if(pow(position.x- x.position.x,2) <= 9 && pow(position.y-x.position.y,2) <= 9)
+                    return false;
+                  return true;
+                }).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
         if (buildingMaterialsLocation != null) {
             while (pow((position.x - buildingMaterialsLocation.position.x), 2) > 4 && pow((position.y - buildingMaterialsLocation.position.y), 2) > 4) {
                 Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
@@ -121,6 +132,9 @@ public class Settler{
         if (y >= MapCreation.size.y) y = 1;
         if (y <= 0) y = MapCreation.size.y - 1;
         return new Coordinates((int) round(x),(int) round(y));
+    }
+    public Color getColor() {
+        return color;
     }
 
 }
