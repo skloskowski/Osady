@@ -44,8 +44,8 @@ public class Main {
             }
             days++;
 
-            System.out.println(settlerList.size());
-            System.out.println(settlementList.get(0).ownedNourishment);
+            System.out.println("ilosc = " + settlerList.size());
+            System.out.println("wartosc nourishment = " + settlementList.get(0).ownedNourishment);
         }
 
         // zbieranie rzeczy i zmiana populacji nie dziala
@@ -57,9 +57,22 @@ public class Main {
         }
     }
     static public void addSettlers(List<Settler> settlerList, Settlement settlement){
-        for(int i = 0; i < settlement.changePopulation(settlement.population); i++){
-            Settler settler = new Settler(settlement.position, settlement);
-            settlerList.add(settler);
+        if(0 < settlement.changePopulation()){
+            for(int i = 0; i < settlement.changePopulation() - settlement.population; i++){
+                Settler settler = new Settler(settlement.position, settlement);
+                settlerList.add(settler);
+            }
+        }
+
+        if(0 > settlement.changePopulation()) {
+            for (int i = 0; i < settlement.changePopulation()*(-1); i++) {
+                for (Settler x : settlerList) {
+                    if (x.settlement.equals(settlement)) {
+                        settlerList.remove(x);
+                        break;
+                    }
+                }
+            }
         }
     }
     /*
