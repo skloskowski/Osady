@@ -1,14 +1,16 @@
 package org.example;
 
+import javafx.scene.paint.Color;
+
 import java.util.HashMap;
+import java.util.Random;
 
 import static java.lang.Math.pow;
 
-public class Settlement { // Pamiętać dodać kolory
+public class Settlement {
 
-    // String colour;
     int population;
-    int color;
+    Color color;
     float speed;
     int ownedNourishment;
     int neededNourishment;
@@ -20,9 +22,9 @@ public class Settlement { // Pamiętać dodać kolory
     HashMap<String,Integer> buildingMaterialsNumber = new HashMap<>();
 
     public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
-        // this.colour = colour;
+        this.color = getColor();
         this.ownedNourishment = ownedNourishment;
-        this.population = population; //zeby nie bylo <0
+        this.population = population;
         this.speed = speed;
         this.ownedBuildingMaterials = ownedBuildingMaterials;
         this.position = position;
@@ -31,46 +33,45 @@ public class Settlement { // Pamiętać dodać kolory
         buildingMaterialsNumber.put("Stone", 0);
         buildingMaterialsNumber.put("Clay", 0);
     }
+    public Color getColor(){
+        Random rand = new Random();
+        return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1),1.0);
+    }
     public int changePopulation(){
         int newPopulation = 0;
-        if(ownedNourishment >= getNeededNourishment()){
-            ownedNourishment -= getNeededNourishment();
-            newPopulation++;
-        }
-        if(ownedNourishment < getNeededNourishment() ){//jaka ilosc
-            newPopulation--;
-        }
-
-
-        if(buildingMaterialsNumber.get("Stone") >= neededStoneAmount && buildingMaterialsNumber.get("Wood") >= neededWoodAmount && buildingMaterialsNumber
-                .get("Clay") >= neededClayAmount){
-
-            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededStoneAmount);
-            neededStoneAmount++;
-
-            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededWoodAmount);
-            neededWoodAmount++;
-
-            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
-            neededClayAmount++;
-
-            newPopulation++;
-
-        }
-        if(buildingMaterialsNumber.get("Stone") < neededStoneAmount  && buildingMaterialsNumber.get("Wood") < neededWoodAmount  && buildingMaterialsNumber
-                .get("Clay") < neededClayAmount ) { //jaka ilosc
-            newPopulation--;
-        }
+//        if(ownedNourishment >= getNeededNourishment()){
+//            ownedNourishment -= getNeededNourishment();
+//            newPopulation++;
+//        }
+//        if(ownedNourishment < getNeededNourishment() ){//jaka ilosc
+//            newPopulation--;
+//        }
+//
+//
+//        if(buildingMaterialsNumber.get("Stone") >= neededStoneAmount && buildingMaterialsNumber.get("Wood") >= neededWoodAmount && buildingMaterialsNumber
+//                .get("Clay") >= neededClayAmount){
+//
+//            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededStoneAmount);
+//            neededStoneAmount++;
+//
+//            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededWoodAmount);
+//            neededWoodAmount++;
+//
+//            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
+//            neededClayAmount++;
+//
+//            newPopulation++;
+//
+//        }
+//        if(buildingMaterialsNumber.get("Stone") < neededStoneAmount  && buildingMaterialsNumber.get("Wood") < neededWoodAmount  && buildingMaterialsNumber
+//                .get("Clay") < neededClayAmount ) { //jaka ilosc
+//            newPopulation--;
+//        }
 
         return newPopulation;
     }
-
-
     public int getNeededNourishment(){
-        return (int)(pow(speed,2) + population);
-    }
-    public int getPopulation() {
-        return population;
+        return (int)(pow(speed,2)+population);
     }
     public void getOwnedNourishment(int nourishment){
         ownedNourishment += nourishment;
