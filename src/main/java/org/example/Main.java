@@ -1,18 +1,18 @@
 package org.example;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-
-import static javafx.application.Application.launch;
-
-public class Main {
+public class Main{
     public static void main(String[] args) {
-        // launch(args);
+
+        Output output = new Output();
+        output.main(args);
+
 
         List<Coordinates> occupiedSpace = new ArrayList<>();
         List<Settlement> settlementList = new ArrayList<>();
@@ -22,33 +22,34 @@ public class Main {
 
         // Input input = new Input();
         // input.askInitialValues();
-
+        MapCreation mapCreation = new MapCreation();
         MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 5, 5, 5, 3);
 
         // MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
         //movement
-        int movesPerDay = 0;
-        int days = 0;
+        int tickCount = 0;
+        int day = 0;
+
 
         System.out.println(occupiedSpace.size());
         System.out.println(settlementList.size());
         System.out.println(settlerList.size());
 
-        while(days < 10) {//waruenk2
-            while (movesPerDay < 20) {//warunek
+        while(day < mapCreation.getMaxDays()) {//waruenk2
+            while (tickCount < mapCreation.getTicksDaily()) {//warunek
                 moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
-                movesPerDay++;
+                tickCount++;
+
+                output.step();
             }
             for (Settlement settlement : settlementList) {
                 addSettlers(settlerList,settlement);
             }
-            days++;
+            day++;
 
             System.out.println("ilosc = " + settlerList.size());
             System.out.println("wartosc nourishment = " + settlementList.get(0).ownedNourishment);
         }
-
-        // zbieranie rzeczy i zmiana populacji nie dziala
 
     }
     static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
@@ -74,12 +75,8 @@ public class Main {
                 }
             }
         }
-    }
-    /*
-    @Override
-    public void start(Stage primaryStage) {
+
 
     }
 
-     */
 }

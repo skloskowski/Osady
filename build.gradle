@@ -1,7 +1,7 @@
 plugins {
-    id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.beryx.jlink' version '2.12.0'
 }
 
 group = 'org.example'
@@ -18,15 +18,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-javafx {
-    version = "20"
-    modules = [ 'javafx.controls' ]
-}
-
 test {
     useJUnitPlatform()
 }
 
+javafx {
+    version = "20"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+jlink {
+    launcher {
+        name = 'hellofx'
+    }
+}
+
 application {
-    mainClass = 'org.example.Main'
+    mainClassName = 'org.example.Output'
 }
