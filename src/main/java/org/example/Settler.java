@@ -1,7 +1,7 @@
 package org.example;
 
-import javafx.scene.paint.Color;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 
@@ -79,7 +79,7 @@ public class Settler{
         }
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
-                .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);//hm?
+                .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
         if (buildingMaterialsLocation != null) {
             while (pow((position.x - buildingMaterialsLocation.position.x), 2) > 4 && pow((position.y - buildingMaterialsLocation.position.y), 2) > 4) {
                 Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
