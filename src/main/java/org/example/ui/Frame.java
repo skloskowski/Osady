@@ -14,7 +14,7 @@ public class Frame extends JFrame {
     private JPanel canvasContainer;
 
     public Frame() {
-        super("Symulacja kurew");
+        super("Symulacja");
         canvasContainer.setPreferredSize(new Dimension(300, 400));
         canvasContainer.setMinimumSize(new Dimension(300, 400));
         this.canvasContainer.add(new Canvas());
@@ -23,7 +23,7 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-        startBtn.addActionListener(e -> System.out.println("Button clicked kurwa"));
+        startBtn.addActionListener(e -> System.out.println("Button clicked"));
     }
 
     private void runSimulation() {
