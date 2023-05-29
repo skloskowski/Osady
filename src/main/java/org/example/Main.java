@@ -33,9 +33,9 @@ public class Main {
         System.out.println(settlerList.size());
 
         int days = 0;
-        int movesPerDay = 0;
+        int movesPerDay;
         while(days < 10) {//waruenk2
-            //movesPerDay = 0;
+            movesPerDay = 0;
             while (movesPerDay < 40) {//warunek
 
                 moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);

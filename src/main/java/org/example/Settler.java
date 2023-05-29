@@ -39,77 +39,88 @@ public class Settler{
         Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
         velocity = velocity.add(acceleration);
         location = location.add(velocity);
-        position.x = (int) round(location.getX());
-        position.y = (int) round(location.getY());
 
-        if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0);
+        position = limit(location.getX(), location.getY());
 
-        limit();
+//        position.x = (int) round(location.getX());
+//        position.y = (int) round(location.getY());
+
+        if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0); //nie dziala zmienic u gory
+
         var foodLocation = foodLocationList.stream()
                 .filter(food -> food.position.equals(position)).findAny().orElse(null);
 
         if (foodLocation != null) {
-            while (pow((location.getX() - foodLocation.position.x), 2) > 4 && pow((location.getY() - foodLocation.position.y), 2) > 4) {
-                Vector getFood = new Vector(foodLocation.position.x - location.getX(), foodLocation.position.y - location.getY());
+            while (pow((position.x - foodLocation.position.x), 2) > 4 && pow((position.y - foodLocation.position.y), 2) > 4) {
+                Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
 
                 location.add(getFood.normalize());
-                position.x = (int) round(location.getX());
-                position.y = (int) round(location.getY());
 
-                limit();
+                position = limit(location.getX(), location.getY());
+
+
+//                position.x = (int) round(location.getX());
+//                position.y = (int) round(location.getY());
+
             }//idk
 
-            while (pow((location.getX() - settlement.position.x), 2) > 25 && pow((location.getY() - settlement.position.y), 2) > 25) {
-                Vector returnVelocity = new Vector(settlement.position.x - location.getX(), settlement.position.y - location.getY());
+            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
                 location.add(returnVelocity.normalize());
-                position.x = (int) round(location.getX());
-                position.y = (int) round(location.getY());
 
-                limit();
-            }//powrot do osady
+                position = limit(location.getX(), location.getY());
+
+//                position.x = (int) round(location.getX());
+//                position.y = (int) round(location.getY());
+
+            }
             settlement.getOwnedNourishment(foodLocation.nourishment);
         }
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
                 .filter(buildingMaterials -> buildingMaterials.position.equals(position)).findAny().orElse(null);//hm?
         if (buildingMaterialsLocation != null) {
-            while (pow((location.getX() - buildingMaterialsLocation.position.x), 2) > 4 && pow((location.getY() - buildingMaterialsLocation.position.y), 2) > 4) {
-                Vector getFood = new Vector(buildingMaterialsLocation.position.x - location.getX(), buildingMaterialsLocation.position.y - location.getY());
+            while (pow((position.x - buildingMaterialsLocation.position.x), 2) > 4 && pow((position.y - buildingMaterialsLocation.position.y), 2) > 4) {
+                Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
 
                 location.add(getFood.normalize());
-                position.x = (int) round(location.getX());
-                position.y = (int) round(location.getY());
 
-                limit();
+                position = limit(location.getX(), location.getY());
+
+//                position.x = (int) round(location.getX());
+//                position.y = (int) round(location.getY());
+
             }
+
             isMoving = true;
             stoppedFor = buildingMaterialsLocation.extractionTime;
             lastStopTimestamp = System.currentTimeMillis();
-            if (buildingMaterialsLocation != null) {
-                while (pow((location.getX() - settlement.position.x), 2) > 25 && pow((location.getY() - settlement.position.y), 2) > 25) {
-                    Vector returnVelocity = new Vector(settlement.position.x - location.getX(), settlement.position.y - location.getY());
+            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
-                    location.add(returnVelocity.normalize());
-                    position.x = (int) round(location.getX());
-                    position.y = (int) round(location.getY());
+                location.add(returnVelocity.normalize());
 
-                    limit();
-                }
-                settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+                position = limit(location.getX(), location.getY());
+
+//                position.x = (int) round(location.getX());
+//                position.y = (int) round(location.getY());
+
             }
+            settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
         }
-        position.x = (int) round(location.getX());
-        position.y = (int) round(location.getY());
+
+        position = limit(location.getX(), location.getY());
+
     }
 
 
-    private void limit() {
-        if (position.x >= MapCreation.size.x) position.x = 1;
-        if (position.x <= 0) position.x = MapCreation.size.x - 1;
-        if (position.y >= MapCreation.size.y) position.y = 1;
-        if (position.y <= 0) position.y = MapCreation.size.y - 1;
-
+    private Coordinates limit(double x, double y) {
+        if (x >= MapCreation.size.x) x = 1;
+        if (x <= 0) x = MapCreation.size.x - 1;
+        if (y >= MapCreation.size.y) y = 1;
+        if (y <= 0) y = MapCreation.size.y - 1;
+        return new Coordinates((int) round(x),(int) round(y));
     }
 
 }
