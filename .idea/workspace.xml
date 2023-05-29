@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Movement of Settler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Canvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +109,7 @@
       <command value="gradle clean build" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Frame">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.ui.Frame" />
       <module name="Osady.main" />
@@ -202,8 +202,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Frame" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.Osady [run]" />
         <item itemvalue="Gradle.Osady [clean build]" />
         <item itemvalue="Gradle.Osady [build]" />
@@ -293,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685378792952</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Movement of Settler">
+      <created>1685390693870</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685390693870</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

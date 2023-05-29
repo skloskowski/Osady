@@ -22,7 +22,7 @@ public class Settlement {
     HashMap<String,Integer> buildingMaterialsNumber = new HashMap<>();
 
     public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
-        this.color = getColor();
+        this.color = getRandomColor();
         this.ownedNourishment = ownedNourishment;
         this.population = population;
         this.speed = speed;
@@ -33,7 +33,12 @@ public class Settlement {
         buildingMaterialsNumber.put("Stone", 0);
         buildingMaterialsNumber.put("Clay", 0);
     }
-    public Color getColor(){
+
+    public Color getColor() {
+        return color;
+    }
+
+    public Color getRandomColor(){
         Random rand = new Random();
         return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1));
     }

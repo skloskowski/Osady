@@ -2,38 +2,90 @@ package org.example.ui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import org.example.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.example.Main.addSettlers;
+import static org.example.Main.moveSettlers;
 
 public class Frame extends JFrame {
     private JPanel panel1;
     private JButton stopBtn;
     private JButton startBtn;
     private JPanel canvasContainer;
+    private Canvas canvas = new Canvas();
+    private boolean isSimRunning = true;
 
     public Frame() {
         super("Symulacja");
-        canvasContainer.setPreferredSize(new Dimension(300, 400));
-        canvasContainer.setMinimumSize(new Dimension(300, 400));
-        this.canvasContainer.add(new Canvas());
+        canvasContainer.setPreferredSize(new Dimension(400, 400));
+        canvasContainer.setMinimumSize(new Dimension(400, 400));
+        this.canvasContainer.add(canvas);
 
         setContentPane(panel1);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-        startBtn.addActionListener(e -> System.out.println("Button clicked"));
+        startBtn.addActionListener(e -> isSimRunning = true);
+        stopBtn.addActionListener(e -> isSimRunning = false);
     }
 
     private void runSimulation() {
         new Thread(() -> {
+            List<Coordinates> occupiedSpace = new ArrayList<>();
+            List<Settlement> settlementList = new ArrayList<>();
+            List<Settler> settlerList = new ArrayList<>();
+            List<FoodLocation> foodLocationList = new ArrayList<>();
+            List<BuildingMaterialsLocation> buildingMaterialsLocationList = new ArrayList<>();
 
-        });
+            MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 5, 5, 5, 3);
+            canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
+            while (true) {
+                if (!isSimRunning) continue;
+
+                // Input input = new Input();
+                // input.askInitialValues();
+
+
+                // MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
+                //movement
+
+                System.out.println(occupiedSpace.size());
+                System.out.println(settlementList.size());
+                System.out.println(settlerList.size());
+
+                int days = 0;
+                int movesPerDay;
+                while (days < 10) {//waruenk2
+                    movesPerDay = 0;
+                    while (movesPerDay < 40) {//warunek
+
+                        moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
+                        System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
+                        movesPerDay++;
+                    }
+                    for (Settlement settlement : settlementList) {
+                        addSettlers(settlerList, settlement);
+                    }
+                    days++;
+                    canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }).start();
     }
 
     public static void main(String[] args) {
-        new Frame();
+        new Frame().runSimulation();
     }
 
     {

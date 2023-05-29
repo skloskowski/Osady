@@ -16,6 +16,7 @@ public class Settler{
     boolean isMoving = true;
     long lastStopTimestamp;
     long stoppedFor;
+    boolean equiped = false;
 
     public Settler(Coordinates position, Settlement settlement) {
         this.position = position;
@@ -39,7 +40,7 @@ public class Settler{
         Vector location = new Vector(position.x, position.y);
         Vector velocity = new Vector(0, 0);
 
-        Vector acceleration = new Vector(rand.nextDouble(-1, 1), rand.nextDouble(-1, 1));
+        Vector acceleration = new Vector(rand.nextDouble(-1*maxSpeed, 1*maxSpeed), rand.nextDouble(-1*maxSpeed, 1*maxSpeed));
         velocity = velocity.add(acceleration);
         location = location.add(velocity);
 
@@ -48,30 +49,25 @@ public class Settler{
 //        position.x = (int) round(location.getX());
 //        position.y = (int) round(location.getY());
 
-        if (velocity.getVectorLength() >= maxSpeed) acceleration = acceleration.multiply(0); //nie dziala zmienic u gory
-
         var foodLocation = foodLocationList.stream()
                 .filter(food -> {
-                    if(pow(position.x- food.position.x,2) <= 9 && pow(position.y-food.position.y,2) <= 9)
+                    if (pow(position.x - food.position.x, 2) <= 9 && pow(position.y - food.position.y, 2) <= 9)
                         return false;
                     return true;
                 }).findAny().orElse(null);
 
         if (foodLocation != null) {
-            while (pow((position.x - foodLocation.position.x), 2) > 4 && pow((position.y - foodLocation.position.y), 2) > 4) {
-                Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
+            equiped = true;
+            Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
 
-                location.add(getFood.normalize());
+            location.add(getFood.normalize());
 
-                position = limit(location.getX(), location.getY());
+            position = limit(location.getX(), location.getY());
 
 
 //                position.x = (int) round(location.getX());
 //                position.y = (int) round(location.getY());
-
-            }//idk
-
-            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+            if (equiped) {
                 Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
                 location.add(returnVelocity.normalize());
@@ -81,8 +77,8 @@ public class Settler{
 //                position.x = (int) round(location.getX());
 //                position.y = (int) round(location.getY());
 
+                settlement.getOwnedNourishment(foodLocation.nourishment); //nie moze w kazdym tiku przekazywac do settlementu
             }
-            settlement.getOwnedNourishment(foodLocation.nourishment);
         }
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
@@ -92,7 +88,6 @@ public class Settler{
                   return true;
                 }).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
         if (buildingMaterialsLocation != null) {
-            while (pow((position.x - buildingMaterialsLocation.position.x), 2) > 4 && pow((position.y - buildingMaterialsLocation.position.y), 2) > 4) {
                 Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
 
                 location.add(getFood.normalize());
@@ -102,12 +97,10 @@ public class Settler{
 //                position.x = (int) round(location.getX());
 //                position.y = (int) round(location.getY());
 
-            }
-
             isMoving = true;
             stoppedFor = buildingMaterialsLocation.extractionTime;
             lastStopTimestamp = System.currentTimeMillis();
-            while (pow((position.x - settlement.position.x), 2) > 25 && pow((position.y - settlement.position.y), 2) > 25) {
+            if(equiped) {
                 Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
 
                 location.add(returnVelocity.normalize());
@@ -117,8 +110,9 @@ public class Settler{
 //                position.x = (int) round(location.getX());
 //                position.y = (int) round(location.getY());
 
+
+                settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
             }
-            settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
         }
 
         position = limit(location.getX(), location.getY());

@@ -9,12 +9,16 @@ public class BuildingMaterials extends Resources{
     int constructionValue;
     public BuildingMaterials(String name, long extractionTime, int constructionValue) {
         super(name);
-        color = getColor();
+        color = getRandomColor();
         this.extractionTime = extractionTime;
         this.constructionValue = constructionValue;
     }
-    public Color getColor(){
+    private Color getRandomColor(){
         Random rand = new Random();
         return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1));
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

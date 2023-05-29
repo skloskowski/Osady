@@ -11,7 +11,6 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         // launch(args);
-        Canvas canvas = new Canvas();
 
         List<Coordinates> occupiedSpace = new ArrayList<>();
         List<Settlement> settlementList = new ArrayList<>();
@@ -30,8 +29,6 @@ public class Main {
         System.out.println(occupiedSpace.size());
         System.out.println(settlementList.size());
         System.out.println(settlerList.size());
-
-        canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
 
         int days = 0;
         int movesPerDay;
