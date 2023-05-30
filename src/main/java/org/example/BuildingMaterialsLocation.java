@@ -7,4 +7,8 @@ public class BuildingMaterialsLocation extends BuildingMaterials{
         super(name, extractionTime, constructionValue);
         this.position = position;
     }
+
+    public Coordinates getPosition() {
+        return position;
+    }
 }

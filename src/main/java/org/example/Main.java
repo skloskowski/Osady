@@ -1,18 +1,16 @@
 package org.example;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import org.example.ui.Canvas;
 import org.w3c.dom.ls.LSOutput;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
-
-        Output output = new Output();
-        output.main(args);
-
+        // launch(args);
 
         List<Coordinates> occupiedSpace = new ArrayList<>();
         List<Settlement> settlementList = new ArrayList<>();
@@ -22,35 +20,33 @@ public class Main{
 
         // Input input = new Input();
         // input.askInitialValues();
-        MapCreation mapCreation = new MapCreation();
+
         MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 5, 5, 5, 3);
 
         // MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
         //movement
-        int tickCount = 0;
-        int day = 0;
-
 
         System.out.println(occupiedSpace.size());
         System.out.println(settlementList.size());
         System.out.println(settlerList.size());
 
-        while(day < mapCreation.getMaxDays()) {//waruenk2
-            while (tickCount < mapCreation.getTicksDaily()) {//warunek
-                moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
-                tickCount++;
+        int days = 0;
+        int movesPerDay;
+        while(days < 10) {//waruenk2
+            movesPerDay = 0;
+            while (movesPerDay < 40) {//warunek
 
-                output.step();
+                moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
+                System.out.println("lokalizacja  = " + settlerList.get(0).position.x + " " + settlerList.get(0).position.y);
+                movesPerDay++;
             }
             for (Settlement settlement : settlementList) {
                 addSettlers(settlerList,settlement);
             }
-            day++;
-
+            days++;
             System.out.println("ilosc = " + settlerList.size());
             System.out.println("wartosc nourishment = " + settlementList.get(0).ownedNourishment);
         }
-
     }
     static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
         for (Settler settler : settlerList) {
@@ -66,7 +62,7 @@ public class Main{
         }
 
         if(0 > settlement.changePopulation()) {
-            for (int i = 0; i < settlement.changePopulation()*(-1); i++) {
+            for (int i = 0; i < settlement.changePopulation() * (-1); i++) {
                 for (Settler x : settlerList) {
                     if (x.settlement.equals(settlement)) {
                         settlerList.remove(x);
@@ -75,8 +71,12 @@ public class Main{
                 }
             }
         }
-
+    }
+    /*
+    @Override
+    public void start(Stage primaryStage) {
 
     }
 
+     */
 }

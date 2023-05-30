@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Coordinates {
+
     int x;
     int y;
     public Coordinates(int x, int y){
@@ -30,5 +31,12 @@ public class Coordinates {
         Random rand = new Random();
         Coordinates randomCords = new Coordinates(rand.nextInt(MapCreation.size.x), rand.nextInt(MapCreation.size.y));
         return randomCords;
+    }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

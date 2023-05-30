@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MapCreation {
-    static Coordinates size = new Coordinates(15,15);
-    int maxDays = 10;
-    int ticksDaily = 1500;
+    static Coordinates size = new Coordinates(400,400);
 
     static public void CreateMap(List<BuildingMaterialsLocation> buildList, List<FoodLocation> foodList, List<Settlement> settlementList, List<Settler> settlerList, List<Coordinates> occupiedSpace , int numberSettlements, int numberFood, int numberBuildingMaterials, int startingSettlers){
 
@@ -121,12 +119,5 @@ public class MapCreation {
         }
     }
 
-    public int getMaxDays(){
-        return maxDays;
-    }
-
-    public int getTicksDaily(){
-        return ticksDaily;
-    }
 
 }

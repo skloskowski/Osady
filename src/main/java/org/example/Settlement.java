@@ -1,7 +1,7 @@
 package org.example;
 
-import javafx.scene.paint.Color;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -18,11 +18,11 @@ public class Settlement {
     int neededWoodAmount;
     int neededClayAmount;
     int ownedBuildingMaterials;
-    Coordinates position;
+    public Coordinates position;
     HashMap<String,Integer> buildingMaterialsNumber = new HashMap<>();
 
     public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
-        this.color = getColor();
+        this.color = getRandomColor();
         this.ownedNourishment = ownedNourishment;
         this.population = population;
         this.speed = speed;
@@ -33,9 +33,14 @@ public class Settlement {
         buildingMaterialsNumber.put("Stone", 0);
         buildingMaterialsNumber.put("Clay", 0);
     }
-    public Color getColor(){
+
+    public Color getColor() {
+        return color;
+    }
+
+    public Color getRandomColor(){
         Random rand = new Random();
-        return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1),1.0);
+        return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1));
     }
     public int changePopulation(){
         int newPopulation = 0;
