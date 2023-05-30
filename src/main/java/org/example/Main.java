@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         // launch(args);
 
+        /*
         List<Coordinates> occupiedSpace = new ArrayList<>();
         List<Settlement> settlementList = new ArrayList<>();
         List<Settler> settlerList = new ArrayList<>();
@@ -47,6 +48,9 @@ public class Main {
             System.out.println("ilosc = " + settlerList.size());
             System.out.println("wartosc nourishment = " + settlementList.get(0).ownedNourishment);
         }
+
+
+         */
     }
     static public void moveSettlers(List<Settler> settlerList, List<FoodLocation>foodLocationList, List<BuildingMaterialsLocation>buildingMaterialsLocationList){
         for (Settler settler : settlerList) {

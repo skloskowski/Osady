@@ -18,11 +18,16 @@ public class Settler{
     long stoppedFor;
     boolean equiped = false;
 
+    FoodLocation lastTakenFromFood;
+    BuildingMaterialsLocation lastTakenFromBuild;
+
     public Settler(Coordinates position, Settlement settlement) {
         this.position = position;
         this.settlement = settlement;
         this.maxSpeed = settlement.getSpeed();
         this.color = settlement.color;
+        lastTakenFromFood = null;
+        lastTakenFromBuild = null;
     }
 
     public Coordinates getPosition() {
@@ -51,12 +56,12 @@ public class Settler{
 
         var foodLocation = foodLocationList.stream()
                 .filter(food -> {
-                    if (pow(position.x - food.position.x, 2) <= 9 && pow(position.y - food.position.y, 2) <= 9)
-                        return false;
-                    return true;
+                    if (pow(position.x - food.position.x, 2) <= 25 && pow(position.y - food.position.y, 2) <= 25)
+                        return true;
+                    return false;
                 }).findAny().orElse(null);
 
-        if (foodLocation != null) {
+        if (foodLocation != null ) {
             equiped = true;
             Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
 
@@ -77,13 +82,19 @@ public class Settler{
 //                position.x = (int) round(location.getX());
 //                position.y = (int) round(location.getY());
 
-                settlement.getOwnedNourishment(foodLocation.nourishment); //nie moze w kazdym tiku przekazywac do settlementu
+
+                if (lastTakenFromFood != foodLocation){
+                    settlement.getOwnedNourishment(foodLocation.nourishment);
+                    lastTakenFromFood = foodLocation;
+                }
+
             }
         }
 
+
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
                 .filter(x -> {
-                  if(pow(position.x- x.position.x,2) <= 9 && pow(position.y-x.position.y,2) <= 9)
+                  if(pow(position.x- x.position.x,2) <= 25 && pow(position.y-x.position.y,2) <= 25)
                     return false;
                   return true;
                 }).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
@@ -111,7 +122,12 @@ public class Settler{
 //                position.y = (int) round(location.getY());
 
 
-                settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+                if (lastTakenFromBuild != buildingMaterialsLocation){
+                    settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+                    lastTakenFromBuild = buildingMaterialsLocation;
+                }
+
+
             }
         }
 

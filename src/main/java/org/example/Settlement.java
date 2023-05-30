@@ -12,7 +12,7 @@ public class Settlement {
     int population;
     Color color;
     float speed;
-    int ownedNourishment;
+    public int ownedNourishment;
     int neededNourishment;
     int neededStoneAmount;
     int neededWoodAmount;

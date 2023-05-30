@@ -43,7 +43,7 @@ public class Frame extends JFrame {
             List<FoodLocation> foodLocationList = new ArrayList<>();
             List<BuildingMaterialsLocation> buildingMaterialsLocationList = new ArrayList<>();
 
-            MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 5, 5, 5, 3);
+            MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 1, 50, 0, 1);
             canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
             while (true) {
                 if (!isSimRunning) continue;
@@ -55,9 +55,12 @@ public class Frame extends JFrame {
                 // MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, input.numberSettlements, input.numberFood, input.numberBuildingMaterials, input.numberStartingSettlers);
                 //movement
 
+                /*
                 System.out.println(occupiedSpace.size());
                 System.out.println(settlementList.size());
                 System.out.println(settlerList.size());
+
+                 */
 
                 int days = 0;
                 int movesPerDay;
@@ -66,16 +69,18 @@ public class Frame extends JFrame {
                     while (movesPerDay < 40) {//warunek
 
                         moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
-                        System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
+                        // System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
                         movesPerDay++;
                     }
                     for (Settlement settlement : settlementList) {
                         addSettlers(settlerList, settlement);
                     }
                     days++;
+                    System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
+                    System.out.println("nourishment = " + settlementList.get(0).ownedNourishment);
                     canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
