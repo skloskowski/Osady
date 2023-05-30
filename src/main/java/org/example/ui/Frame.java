@@ -82,7 +82,7 @@ public class Frame extends JFrame {
                     Output.GetStats(settlementList);
                     canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
