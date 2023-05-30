@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Fix">
+    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Working version // needed value optimalisation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Output.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" afterDir="false" />
     </list>
@@ -307,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685437660184</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Working version // needed value optimalisation">
+      <created>1685438274257</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685438274257</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +353,8 @@
     <MESSAGE value="Large Changes" />
     <MESSAGE value="Movement of Settler" />
     <MESSAGE value="Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
+    <MESSAGE value="Working version // needed value optimalisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working version // needed value optimalisation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

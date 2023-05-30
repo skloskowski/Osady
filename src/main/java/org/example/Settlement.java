@@ -31,7 +31,7 @@ public class Settlement {
         this.neededNourishment = getNeededNourishment();
         buildingMaterialsNumber.put("Wood", 0);
         buildingMaterialsNumber.put("Stone", 0);
-        buildingMaterialsNumber.put("Clay", 0);
+        // buildingMaterialsNumber.put("Clay", 0);
     }
 
     public Color getColor() {
@@ -48,35 +48,35 @@ public class Settlement {
             ownedNourishment -= getNeededNourishment();
             newPopulation++;
         }
-        if(ownedNourishment < getNeededNourishment() ){//jaka ilosc
+        if(ownedNourishment < getNeededNourishment() ){
+            ownedNourishment -= (ownedNourishment/2);
             newPopulation--;
         }
 
 
-        if(buildingMaterialsNumber.get("Stone") >= neededStoneAmount && buildingMaterialsNumber.get("Wood") >= neededWoodAmount && buildingMaterialsNumber
-                .get("Clay") >= neededClayAmount){
+        if(buildingMaterialsNumber.get("Stone") >= population && buildingMaterialsNumber.get("Wood") >= population){
 
-            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- neededStoneAmount);
-            neededStoneAmount++;
+            buildingMaterialsNumber.replace("Stone",buildingMaterialsNumber.get("Stone")- population);
 
-            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- neededWoodAmount);
-            neededWoodAmount++;
+            buildingMaterialsNumber.replace("Wood",buildingMaterialsNumber.get("Wood")- population);
 
-            buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- neededClayAmount);
-            neededClayAmount++;
+            // buildingMaterialsNumber.replace("Clay",buildingMaterialsNumber.get("Clay")- population);
 
             newPopulation++;
 
         }
-        if(buildingMaterialsNumber.get("Stone") < neededStoneAmount  && buildingMaterialsNumber.get("Wood") < neededWoodAmount  && buildingMaterialsNumber
-                .get("Clay") < neededClayAmount ) { //jaka ilosc
+        if(buildingMaterialsNumber.get("Stone") < population  && buildingMaterialsNumber.get("Wood") < population) {
+
+            buildingMaterialsNumber.replace("Stone", 0);
+            buildingMaterialsNumber.replace("Wood", 0);
+            // buildingMaterialsNumber.replace("Clay", 0);
+
             newPopulation--;
         }
-
         return newPopulation;
     }
     public int getNeededNourishment(){
-        return (int)(pow(speed,2)+population);
+        return (int)(pow(speed,3)+ 2 * population);
     }
     public void getOwnedNourishment(int nourishment){
         ownedNourishment += nourishment;
@@ -85,9 +85,24 @@ public class Settlement {
 
         if(buildingMaterialsNumber.containsKey(name)){
             int value = buildingMaterialsNumber.get(name);
-            buildingMaterialsNumber.replace(name, value, value + 1);
+            buildingMaterialsNumber.replace(name, value, value + 20);
         }
     }
+
+    public int getStoneAmount(){
+        return buildingMaterialsNumber.get("Stone");
+    }
+
+    public int getWoodAmount(){
+        return buildingMaterialsNumber.get("Wood");
+    }
+
+    /*
+    public int getClayAmount(){
+        return buildingMaterialsNumber.get("Clay");
+    }
+
+     */
 
     public float getSpeed() {
         return speed;

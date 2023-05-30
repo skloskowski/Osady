@@ -11,6 +11,7 @@ public class Input {
     int numberFood;
     int numberBuildingMaterials;
     int numberStartingSettlers;
+    int maxDays;
 
     /*
     public Input(Coordinates size, int numberSettlements, int numberFood, int numberBuildingMaterials){
@@ -33,21 +34,40 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         numberSettlements = scanner.nextInt();
     }
+    public int getSettlements(){
+        return numberSettlements;
+    }
 
     public void askStartingSettlers(){
         System.out.println("Enter number of starting settlers of each settlement:");
         Scanner scanner = new Scanner(System.in);
         numberStartingSettlers = scanner.nextInt();
     }
+
+    public int getStartingSettlers(){
+        return numberStartingSettlers;
+    }
     public void askFood(){
         System.out.println("Enter number of food locations:");
         Scanner scanner = new Scanner(System.in);
         numberFood = scanner.nextInt();
     }
+
+    public int getFood(){
+        return numberFood;
+    }
     public void askNumberBuildingMaterials(){
         System.out.println("Enter number of building materials locations:");
         Scanner scanner = new Scanner(System.in);
         numberBuildingMaterials = scanner.nextInt();
+    }
+
+    public int getBuildingMaterials(){
+        return numberBuildingMaterials;
+    }
+
+    public int getMaxDays(){
+        return maxDays;
     }
 
     public void askInitialValues(){

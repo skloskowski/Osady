@@ -92,7 +92,11 @@ public class MapCreation {
                 list.add(buildingMaterialsLocation);
                 occupiedSpace.add(buildingMaterialsLocation.position);
 
-            }else{
+            }
+
+            /*
+            else{
+
                 BuildingMaterialsLocation buildingMaterialsLocation = new BuildingMaterialsLocation(
                         "Clay",
                         70,
@@ -104,6 +108,9 @@ public class MapCreation {
                 occupiedSpace.add(buildingMaterialsLocation.position);
 
             }
+
+             */
+
         }
     }
 

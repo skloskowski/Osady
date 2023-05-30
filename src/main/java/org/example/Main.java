@@ -59,9 +59,10 @@ public class Main {
     }
     static public void addSettlers(List<Settler> settlerList, Settlement settlement){
         if(0 < settlement.changePopulation()){
-            for(int i = 0; i < settlement.changePopulation() - settlement.population; i++){
+            for(int i = 0; i < settlement.changePopulation(); i++){
                 Settler settler = new Settler(settlement.position, settlement);
                 settlerList.add(settler);
+                settlement.population++;
             }
         }
 
@@ -70,6 +71,7 @@ public class Main {
                 for (Settler x : settlerList) {
                     if (x.settlement.equals(settlement)) {
                         settlerList.remove(x);
+                        settlement.population--;
                         break;
                     }
                 }
