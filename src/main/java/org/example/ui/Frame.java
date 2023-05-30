@@ -43,7 +43,7 @@ public class Frame extends JFrame {
             List<FoodLocation> foodLocationList = new ArrayList<>();
             List<BuildingMaterialsLocation> buildingMaterialsLocationList = new ArrayList<>();
 
-            MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 1, 50, 0, 1);
+            MapCreation.CreateMap(buildingMaterialsLocationList, foodLocationList, settlementList, settlerList, occupiedSpace, 15, 50, 40, 3);
             canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
             while (true) {
                 if (!isSimRunning) continue;
@@ -66,18 +66,21 @@ public class Frame extends JFrame {
                 int movesPerDay;
                 while (days < 10) {//waruenk2
                     movesPerDay = 0;
-                    while (movesPerDay < 40) {//warunek
+                    while (movesPerDay < 4000) {//warunek
 
                         moveSettlers(settlerList, foodLocationList, buildingMaterialsLocationList);
                         // System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
                         movesPerDay++;
                     }
+
                     for (Settlement settlement : settlementList) {
                         addSettlers(settlerList, settlement);
                     }
                     days++;
-                    System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
+                    // System.out.println("lokalizacja  = " + settlerList.get(0).getPosition().getX() + " " + settlerList.get(0).getPosition().getY());
+                    System.out.println(settlerList.size());
                     System.out.println("nourishment = " + settlementList.get(0).ownedNourishment);
+                    System.out.println("");
                     canvas.setValues(settlementList, settlerList, buildingMaterialsLocationList, foodLocationList);
                     try {
                         Thread.sleep(500);
