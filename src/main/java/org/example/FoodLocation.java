@@ -1,7 +1,7 @@
 package org.example;
 
 public class FoodLocation extends Food{
-    Coordinates position;
+    private Coordinates position;
 
     public Coordinates getPosition() {
         return position;

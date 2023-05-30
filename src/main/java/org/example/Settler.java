@@ -9,29 +9,34 @@ import static java.lang.Math.*;
 
 public class Settler{
 
-    Settlement settlement;
-    float maxSpeed;
-    Coordinates position;
-    Color color;
-    boolean isMoving = true;
-    long lastStopTimestamp;
-    long stoppedFor;
-    boolean equiped = false;
+    public Settlement getSettlement() {
+        return settlement;
+    }
+    public Color getColor() {
+        return color;
+    }
+    public Coordinates getPosition() {
+        return position;
+    }
+    private Settlement settlement;
+    private float maxSpeed;
+    private Coordinates position;
+    private Color color;
+    private boolean isMoving = true;
+    private long lastStopTimestamp;
+    private long stoppedFor;
+    private boolean equiped = false;
 
-    FoodLocation lastTakenFromFood;
-    BuildingMaterialsLocation lastTakenFromBuild;
+    private FoodLocation lastTakenFromFood;
+    private BuildingMaterialsLocation lastTakenFromBuild;
 
     public Settler(Coordinates position, Settlement settlement) {
         this.position = position;
         this.settlement = settlement;
         this.maxSpeed = settlement.getSpeed();
-        this.color = settlement.color;
+        this.color = settlement.getColor();
         lastTakenFromFood = null;
         lastTakenFromBuild = null;
-    }
-
-    public Coordinates getPosition() {
-        return position;
     }
 
     public void movement(List<FoodLocation> foodLocationList, List<BuildingMaterialsLocation> buildingMaterialsLocationList) {
@@ -42,7 +47,7 @@ public class Settler{
         }
 
         Random rand = new Random();
-        Vector location = new Vector(position.x, position.y);
+        Vector location = new Vector(position.getX(), position.getY());
         Vector velocity = new Vector(0, 0);
 
         Vector acceleration = new Vector(rand.nextDouble(-1*maxSpeed, 1*maxSpeed), rand.nextDouble(-1*maxSpeed, 1*maxSpeed));
@@ -51,40 +56,30 @@ public class Settler{
 
         position = limit(location.getX(), location.getY());
 
-//        position.x = (int) round(location.getX());
-//        position.y = (int) round(location.getY());
-
         var foodLocation = foodLocationList.stream()
                 .filter(food -> {
-                    if (pow(position.x - food.position.x, 2) <= 25 && pow(position.y - food.position.y, 2) <= 25)
+                    if (pow(position.getX() - food.getPosition().getX(), 2) <= 25 && pow(position.getY() - food.getPosition().getY(), 2) <= 25)
                         return true;
                     return false;
                 }).findAny().orElse(null);
 
         if (foodLocation != null ) {
             equiped = true;
-            Vector getFood = new Vector(foodLocation.position.x - position.x, foodLocation.position.y - position.y);
+            Vector getFood = new Vector(foodLocation.getPosition().getX() - position.getX(), foodLocation.getPosition().getY() - position.getY());
 
             location.add(getFood.normalize());
 
             position = limit(location.getX(), location.getY());
 
-
-//                position.x = (int) round(location.getX());
-//                position.y = (int) round(location.getY());
             if (equiped) {
-                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+                Vector returnVelocity = new Vector(settlement.getPosition().getX() - position.getX(), settlement.getPosition().getY() - position.getY());
 
                 location.add(returnVelocity.normalize());
 
                 position = limit(location.getX(), location.getY());
 
-//                position.x = (int) round(location.getX());
-//                position.y = (int) round(location.getY());
-
-
                 if (lastTakenFromFood != foodLocation){
-                    settlement.getOwnedNourishment(foodLocation.nourishment);
+                    settlement.getOwnedNourishment(foodLocation.getNourishment());
                     lastTakenFromFood = foodLocation;
                 }
 
@@ -94,36 +89,29 @@ public class Settler{
 
         var buildingMaterialsLocation = buildingMaterialsLocationList.stream()
                 .filter(x -> {
-                  if(pow(position.x- x.position.x,2) <= 25 && pow(position.y-x.position.y,2) <= 25)
+                  if(pow(position.getX()- x.getPosition().getX(),2) <= 25 && pow(position.getY()-x.getPosition().getY(),2) <= 25)
                     return false;
                   return true;
-                }).findAny().orElse(null);//nie equals musi byc w poblizu a nie rowne
+                }).findAny().orElse(null);
         if (buildingMaterialsLocation != null) {
-                Vector getFood = new Vector(buildingMaterialsLocation.position.x - position.x, buildingMaterialsLocation.position.y - position.y);
+                Vector getFood = new Vector(buildingMaterialsLocation.getPosition().getX() - position.getX(), buildingMaterialsLocation.getPosition().getY() - position.getY());
 
                 location.add(getFood.normalize());
 
                 position = limit(location.getX(), location.getY());
 
-//                position.x = (int) round(location.getX());
-//                position.y = (int) round(location.getY());
-
             isMoving = true;
             stoppedFor = buildingMaterialsLocation.extractionTime;
             lastStopTimestamp = System.currentTimeMillis();
             if(equiped) {
-                Vector returnVelocity = new Vector(settlement.position.x - position.x, settlement.position.y - position.y);
+                Vector returnVelocity = new Vector(settlement.getPosition().getX() - position.getX(), settlement.getPosition().getY() - position.getY());
 
                 location.add(returnVelocity.normalize());
 
                 position = limit(location.getX(), location.getY());
 
-//                position.x = (int) round(location.getX());
-//                position.y = (int) round(location.getY());
-
-
                 if (lastTakenFromBuild != buildingMaterialsLocation){
-                    settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.name);
+                    settlement.getOwnedBuildingMaterials(buildingMaterialsLocation.getName());
                     lastTakenFromBuild = buildingMaterialsLocation;
                 }
 
@@ -137,14 +125,11 @@ public class Settler{
 
 
     private Coordinates limit(double x, double y) {
-        if (x >= MapCreation.size.x) x = 1;
-        if (x <= 0) x = MapCreation.size.x - 1;
-        if (y >= MapCreation.size.y) y = 1;
-        if (y <= 0) y = MapCreation.size.y - 1;
+        if (x >= MapCreation.size.getX()) x = 1;
+        if (x <= 0) x = MapCreation.size.getX() - 1;
+        if (y >= MapCreation.size.getY()) y = 1;
+        if (y <= 0) y = MapCreation.size.getY() - 1;
         return new Coordinates((int) round(x),(int) round(y));
-    }
-    public Color getColor() {
-        return color;
     }
 
 }

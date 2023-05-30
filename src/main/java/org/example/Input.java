@@ -2,32 +2,19 @@ package org.example;
 
 import java.util.Scanner;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class Input {
-    Coordinates size;
-    int numberSettlements;
-    int numberFood;
-    int numberBuildingMaterials;
-    int numberStartingSettlers;
-    int maxDays;
-
-    /*
-    public Input(Coordinates size, int numberSettlements, int numberFood, int numberBuildingMaterials){
-        this.size = size;
-        this.numberSettlements = numberSettlements;
-        this.numberFood = numberFood;
-        this. numberBuildingMaterials = numberBuildingMaterials;
-    } */
+    private int numberSettlements;
+    private int numberFood;
+    private int numberBuildingMaterials;
+    private int numberStartingSettlers;
 
     public void askSize(){
         System.out.println("Enter map size:");
         Scanner scanner = new Scanner(System.in);
         int size = scanner.nextInt();
 
-        MapCreation.size.x = size;
-        MapCreation.size.y = size;
+        MapCreation.size.setX(size);
+        MapCreation.size.setY(size);
     }
     public void askSettlements(){
         System.out.println("Enter number of settlements:");
@@ -66,10 +53,6 @@ public class Input {
         return numberBuildingMaterials;
     }
 
-    public int getMaxDays(){
-        return maxDays;
-    }
-
     public void askInitialValues(){
         askSize();
         askSettlements();
@@ -77,9 +60,4 @@ public class Input {
         askNumberBuildingMaterials();
         askStartingSettlers();
     }
-    public Coordinates getSize(){
-        return size;
-    }
-    //color randomization
-
 }

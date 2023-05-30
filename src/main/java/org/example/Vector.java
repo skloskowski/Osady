@@ -12,18 +12,6 @@ public class Vector {
         return new Vector(x, y);
     }
 
-    public Vector substract(Vector other) {
-        double x = this.x - other.getX();
-        double y = this.y - other.getY();
-        return new Vector(x, y);
-    }
-
-    public Vector multiply(float scalar) {
-        double x = this.x * scalar;
-        double y = this.y * scalar;
-        return new Vector(x, y);
-    }
-
     public double getVectorLength() {
         return sqrt(x * x + y * y);
     }

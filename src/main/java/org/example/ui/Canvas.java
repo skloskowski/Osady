@@ -27,7 +27,7 @@ public class Canvas extends JPanel {
     private void drawSettlements(Graphics2D g, List<Settlement>settlementsList) {
         settlementsList.forEach(x -> {
             g.setColor(x.getColor());
-            g.fillRect(x.position.getX(), x.position.getY(), 16, 16);
+            g.fillRect(x.getPosition().getX(), x.getPosition().getY(), 16, 16);
         });
     }
     private void drawSettlers(Graphics2D g, List<Settler>settlerList){

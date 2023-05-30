@@ -6,19 +6,18 @@ import java.util.List;
 public class Output {
 
     public static void GetStats(List<Settlement> settlementList){
-        //print resources and population of each Settlement
 
         Settlement bestSettlement = settlementList.get(0);
         int id = 0;
 
         for (int i = 0; i < settlementList.size(); i++){
-            if (settlementList.get(i).ownedNourishment > bestSettlement.ownedNourishment){
+            if (settlementList.get(i).getOwnedNourishment() > bestSettlement.getOwnedNourishment()){
                 bestSettlement = settlementList.get(i);
                 id = i;
             }
         }
 
-        System.out.println("Settlement ID: " + id + " has gathered the most food: " + bestSettlement.ownedNourishment + " Color (RGB): " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue());
+        System.out.println("Settlement ID: " + id + " has gathered the most food: " + bestSettlement.getOwnedNourishment() + " Color (RGB): " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue());
 
         for (int i = 0; i < settlementList.size(); i++){
             if (settlementList.get(i).population > bestSettlement.population) {
@@ -41,13 +40,13 @@ public class Output {
         System.out.println("Settlement with most...");
 
         for (int i = 0; i < settlementList.size(); i++){
-            if (settlementList.get(i).ownedNourishment > bestSettlement.ownedNourishment){
+            if (settlementList.get(i).getOwnedNourishment() > bestSettlement.getOwnedNourishment()){
                 bestSettlement = settlementList.get(i);
                 id = i;
             }
         }
 
-        System.out.println("Food: ID:" + id + " Color: " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue() + " amount: " + bestSettlement.ownedNourishment);
+        System.out.println("Food: ID:" + id + " Color: " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue() + " amount: " + bestSettlement.getOwnedNourishment());
 
         for (int i = 0; i < settlementList.size(); i++){
             if (settlementList.get(i).getWoodAmount() > bestSettlement.getWoodAmount()){
@@ -66,17 +65,5 @@ public class Output {
         }
 
         System.out.println("Stone: ID:" + id + " Color: " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue() + " amount: " + bestSettlement.getStoneAmount());
-
-        /*
-        for (int i = 0; i < settlementList.size(); i++){
-            if (settlementList.get(i).getClayAmount() > bestSettlement.getClayAmount()){
-                bestSettlement = settlementList.get(i);
-                id = i;
-            }
-        }
-
-        System.out.println("Clay: ID:" + id + " Color: " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue() + " amount: " + bestSettlement.getClayAmount());
-        */
-
     }
 }

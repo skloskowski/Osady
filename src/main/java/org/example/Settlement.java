@@ -9,26 +9,26 @@ import static java.lang.Math.pow;
 
 public class Settlement {
 
+    public int getOwnedNourishment() {
+        return ownedNourishment;
+    }
+    public Coordinates getPosition() {
+        return position;
+    }
+
     int population;
-    Color color;
-    float speed;
-    public int ownedNourishment;
-    int neededNourishment;
-    int neededStoneAmount;
-    int neededWoodAmount;
-    int neededClayAmount;
-    int ownedBuildingMaterials;
-    public Coordinates position;
+    private Color color;
+    private float speed;
+    private int ownedNourishment;
+    private Coordinates position;
     HashMap<String,Integer> buildingMaterialsNumber = new HashMap<>();
 
-    public Settlement(int population, float speed, int ownedNourishment, int ownedBuildingMaterials, Coordinates position){
+    public Settlement(int population, float speed, int ownedNourishment, Coordinates position){
         this.color = getRandomColor();
         this.ownedNourishment = ownedNourishment;
         this.population = population;
         this.speed = speed;
-        this.ownedBuildingMaterials = ownedBuildingMaterials;
         this.position = position;
-        this.neededNourishment = getNeededNourishment();
         buildingMaterialsNumber.put("Wood", 0);
         buildingMaterialsNumber.put("Stone", 0);
         // buildingMaterialsNumber.put("Clay", 0);
@@ -97,15 +97,7 @@ public class Settlement {
         return buildingMaterialsNumber.get("Wood");
     }
 
-    /*
-    public int getClayAmount(){
-        return buildingMaterialsNumber.get("Clay");
-    }
-
-     */
-
     public float getSpeed() {
         return speed;
     }
 }
-//colours

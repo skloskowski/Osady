@@ -4,8 +4,13 @@ import java.awt.*;
 import java.util.Random;
 
 public class Food extends Resources{
-    int nourishment;
-    Color color;
+    private int nourishment;
+
+    public int getNourishment() {
+        return nourishment;
+    }
+
+    private Color color;
 
     public Color getColor() {
         return color;

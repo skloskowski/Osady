@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Working version // needed value optimalisation">
+    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Movement of Settler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Input.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Output.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Resources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Resources.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Canvas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +165,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Osady [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -179,7 +187,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Osady [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -201,7 +208,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -338,6 +344,11 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="04a6d92a-b899-4bd6-95d4-bf77a17e6494">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -351,17 +362,17 @@
     <MESSAGE value="Creating project" />
     <MESSAGE value="Following main scheme" />
     <MESSAGE value="Large Changes" />
-    <MESSAGE value="Movement of Settler" />
     <MESSAGE value="Fix" />
     <MESSAGE value="Working version // needed value optimalisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working version // needed value optimalisation" />
+    <MESSAGE value="Movement of Settler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Movement of Settler" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Osady$Main.ic" NAME="Main Coverage Results" MODIFIED="1685378937614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Osady$Main.ic" NAME="Main Coverage Results" MODIFIED="1685195075600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.example.*</FILTER>
     </SUITE>
   </component>

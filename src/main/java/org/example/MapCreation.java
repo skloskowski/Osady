@@ -16,31 +16,30 @@ public class MapCreation {
     static public void CreateSettlements(int numberSettlements, List<Settlement> list, List<Coordinates> occupiedSpace, int numberStartingSettlers){
 
         Random rand = new Random();
-        Coordinates randCords = Coordinates.RandomCoordinates();
+        Coordinates randCords = Coordinates.randomCoordinates();
 
         for (int i = 0; i < numberSettlements;i++){
 
-            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.RandomCoordinates();
+            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.randomCoordinates();
 
             Settlement settlement = new Settlement(
                     numberStartingSettlers,
                     rand.nextFloat(9.0f) + 1.0f,
                     0,
-                    0,
                     randCords
             );
 
             list.add(settlement);
-            occupiedSpace.add(settlement.position);
+            occupiedSpace.add(settlement.getPosition());
         }
     }
 
     static public void CreateFoodLocations(int numberFood, List<FoodLocation> list, List<Coordinates> occupiedSpace){
-        Coordinates randCords = Coordinates.RandomCoordinates();
+        Coordinates randCords = Coordinates.randomCoordinates();
 
         for (int i = 0; i < numberFood; i++){
 
-            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.RandomCoordinates();
+            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.randomCoordinates();
 
             FoodLocation foodLocation;
             if ( i % 2 == 0){
@@ -59,16 +58,16 @@ public class MapCreation {
             }
 
             list.add(foodLocation);
-            occupiedSpace.add(foodLocation.position);
+            occupiedSpace.add(foodLocation.getPosition());
         }
     }
 
     static public void CreateBuildingMaterialsLocations(int numberBuildingMaterials, List<BuildingMaterialsLocation> list, List<Coordinates> occupiedSpace){
-        Coordinates randCords = Coordinates.RandomCoordinates();
+        Coordinates randCords = Coordinates.randomCoordinates();
 
         for (int i = 0; i< numberBuildingMaterials; i++){
 
-            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.RandomCoordinates();
+            while(randCords.alreadyOccupied(occupiedSpace)) randCords = Coordinates.randomCoordinates();
 
             if (i % 3 == 0){
                 BuildingMaterialsLocation buildingMaterialsLocation = new BuildingMaterialsLocation(
@@ -79,7 +78,7 @@ public class MapCreation {
                 );
 
                 list.add(buildingMaterialsLocation);
-                occupiedSpace.add(buildingMaterialsLocation.position);
+                occupiedSpace.add(buildingMaterialsLocation.getPosition());
 
             }else if (i % 3 == 1){
                 BuildingMaterialsLocation buildingMaterialsLocation = new BuildingMaterialsLocation(
@@ -90,27 +89,9 @@ public class MapCreation {
                 );
 
                 list.add(buildingMaterialsLocation);
-                occupiedSpace.add(buildingMaterialsLocation.position);
+                occupiedSpace.add(buildingMaterialsLocation.getPosition());
 
             }
-
-            /*
-            else{
-
-                BuildingMaterialsLocation buildingMaterialsLocation = new BuildingMaterialsLocation(
-                        "Clay",
-                        70,
-                        50,
-                        randCords
-                );
-
-                list.add(buildingMaterialsLocation);
-                occupiedSpace.add(buildingMaterialsLocation.position);
-
-            }
-
-             */
-
         }
     }
 
@@ -119,7 +100,7 @@ public class MapCreation {
         for (int j = 0; j < settlementList.size(); j++){
             for (int i = 0; i < startingSettlers; i++){
 
-                Settler settler = new Settler(settlementList.get(j).position, settlementList.get(j));
+                Settler settler = new Settler(settlementList.get(j).getPosition(), settlementList.get(j));
 
                 settlerList.add(settler);
             }
