@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Movement of Settler">
+    <list default="true" id="c000ffc8-3263-42f7-a369-eb4862e1bc1a" name="Changes" comment="Final final">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BuildingMaterialsLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/FoodLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MapCreation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Resources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Resources.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settlement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Settler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Vector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +241,9 @@
       <workItem from="1685295961616" duration="461000" />
       <workItem from="1685308755327" duration="4772000" />
       <workItem from="1685383609155" duration="3372000" />
+      <workItem from="1685720832809" duration="217000" />
+      <workItem from="1685747903755" duration="29000" />
+      <workItem from="1685797377369" duration="4670000" />
     </task>
     <task id="LOCAL-00001" summary="Creating project">
       <created>1683368615637</created>
@@ -313,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685438274257</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Final final">
+      <created>1685452638624</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685452638624</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +377,8 @@
     <MESSAGE value="Fix" />
     <MESSAGE value="Working version // needed value optimalisation" />
     <MESSAGE value="Movement of Settler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Movement of Settler" />
+    <MESSAGE value="Final final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final final" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

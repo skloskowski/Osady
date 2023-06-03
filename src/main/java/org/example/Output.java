@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Output {
 
+    /***
+     * prints settlements with most food and population from settlementList
+     * @param settlementList
+     */
     public static void GetStats(List<Settlement> settlementList){
         //print resources and population of each Settlement
 
@@ -30,6 +34,11 @@ public class Output {
         System.out.println("Settlement ID: " + id + " has gathered the most population: " + bestSettlement.population + " Color: " + bestSettlement.getColor().getRed() + " " + bestSettlement.getColor().getGreen() + " " + bestSettlement.getColor().getBlue());
     }
 
+    /***
+     * prints population of each settlement from settlementList, amount of settlers on the map and list settlements with most materials and food
+     * @param settlementList list of all settlements
+     * @param settlerList list of all settlers
+     */
     public static void getFinalStats(List<Settlement> settlementList, List<Settler> settlerList){
 
         Settlement bestSettlement = settlementList.get(0);

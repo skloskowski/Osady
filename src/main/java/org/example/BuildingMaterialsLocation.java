@@ -8,6 +8,10 @@ public class BuildingMaterialsLocation extends BuildingMaterials{
         this.position = position;
     }
 
+    /***
+     *
+     * @return Coordinates of location
+     */
     public Coordinates getPosition() {
         return position;
     }

@@ -3,6 +3,10 @@ package org.example;
 public class FoodLocation extends Food{
     private Coordinates position;
 
+    /***
+     *
+     * @return position of Location
+     */
     public Coordinates getPosition() {
         return position;
     }

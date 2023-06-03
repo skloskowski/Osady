@@ -13,11 +13,20 @@ public class BuildingMaterials extends Resources{
         this.extractionTime = extractionTime;
         this.constructionValue = constructionValue;
     }
+
+    /***
+     * get random color
+     * @return random color
+     */
     private Color getRandomColor(){
         Random rand = new Random();
         return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1));
     }
 
+    /***
+     *
+     * @return color of building materials
+     */
     public Color getColor() {
         return color;
     }

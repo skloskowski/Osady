@@ -8,10 +8,18 @@ import java.util.Random;
 import static java.lang.Math.pow;
 
 public class Settlement {
-
+    /***
+     *
+     * @return ownedNourishment
+     */
     public int getOwnedNourishment() {
         return ownedNourishment;
     }
+
+    /***
+     *
+     * @return coordinates of settlement
+     */
     public Coordinates getPosition() {
         return position;
     }
@@ -34,14 +42,27 @@ public class Settlement {
         // buildingMaterialsNumber.put("Clay", 0);
     }
 
+    /***
+     *
+     * @return get color of settlement
+     */
     public Color getColor() {
         return color;
     }
 
+    /***
+     *
+     * @return random Color
+     */
     public Color getRandomColor(){
         Random rand = new Random();
         return new Color(rand.nextFloat(1), rand.nextFloat(1), rand.nextFloat(1));
     }
+
+    /***
+     * change population based on neededNourishment, ownedNourishment and owned and needed building materials
+     * @return change in population
+     */
     public int changePopulation(){
         int newPopulation = 0;
         if(ownedNourishment >= getNeededNourishment()){
@@ -75,12 +96,27 @@ public class Settlement {
         }
         return newPopulation;
     }
+
+    /***
+     * needed nourishment based on speed and population
+     * @return needed nourishment
+     */
     public int getNeededNourishment(){
         return (int)(pow(speed,3)+ 2 * population);
     }
+
+    /***
+     * change amount of OwnedNourishment by nourishment
+     * @param nourishment amount of nourishment to add
+     */
     public void getOwnedNourishment(int nourishment){
         ownedNourishment += nourishment;
     }
+
+    /***
+     * add 20 of name Material
+     * @param name name of added material
+     */
     public void getOwnedBuildingMaterials(String name){
 
         if(buildingMaterialsNumber.containsKey(name)){
@@ -89,14 +125,26 @@ public class Settlement {
         }
     }
 
+    /***
+     *
+     * @return amount of Stone in settlement
+     */
     public int getStoneAmount(){
         return buildingMaterialsNumber.get("Stone");
     }
 
+    /***
+     *
+     * @return amount of Wood in settlement
+     */
     public int getWoodAmount(){
         return buildingMaterialsNumber.get("Wood");
     }
 
+    /***
+     *
+     * @return speed of settlers in settlement
+     */
     public float getSpeed() {
         return speed;
     }

@@ -39,6 +39,11 @@ public class Settler{
         lastTakenFromBuild = null;
     }
 
+    /***
+     * move to random location unless there is foodLocation or BuildingMaterialLocation nearby then move towards it
+     * @param foodLocationList list of all foodLocations
+     * @param buildingMaterialsLocationList list of all buildingMaterialsLocation
+     */
     public void movement(List<FoodLocation> foodLocationList, List<BuildingMaterialsLocation> buildingMaterialsLocationList) {
 
         if (!isMoving) {
@@ -123,7 +128,12 @@ public class Settler{
 
     }
 
-
+    /***
+     * if x or y is bigger than map size move to opposing edge of map
+     * @param x position x
+     * @param y position y
+     * @return coordinates x, y
+     */
     private Coordinates limit(double x, double y) {
         if (x >= MapCreation.size.getX()) x = 1;
         if (x <= 0) x = MapCreation.size.getX() - 1;
